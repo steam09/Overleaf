@@ -1,0 +1,47 @@
+
+\section{Introduction}
+\subsection{Proposed Study}
+
+When developing new rocketry systems, one step in the process holds the fundamental question: how can we prepare the right propellant for the situation? Will it perform as intended, even at such a large-scale and with millions upon millions of dollars invested into it? This challenge is nowhere more critical than within the field of solid rocket propellants, where the conjunction of chemical components determine not only the thrust profile but also the safety, stability, and reliability. 
+
+As time has developed, industry professionals have geared closer to Ammonium Perchlorate (AP)-based propellants, due to their ease of manufacturing and stability for standardized large-scale rocketry. However, the iterative process in developing, synthesizing, and testing new formulations takes significant amounts of time and money, not including the actual usage. This economical and temporal constraint has hindered the growth of solid rocket-based propellants, but with modern computational power there is the promise of digital screening candidate formulations before committing real resources. 
+
+This project will investigate the correlation between digital simulation predictions and empirical performance data in AP through the addition of metal catalytic additives. The primary objective is to develop a quantitative framework that can accurately evaluate the predictive ability of existing computational tools—PROPEP 3.0, NASA Chemical Equilibrium with Applications (CEA2), CPROPEP, and Rocket Propulsion Analysis (RPA)—against experimentally measured thermodynamic performance and catalytic efficiency metrics. 
+
+Rather than conducting physical testing due to limited resources and time, this research will employ to a meta-analytical approach that considers the extensive amount of published literature from professional laboratories. By comparing a multitude of simulation tools against the empirical datasets, a gap is addressed: while individual reviews have shown specific formulation analysis, there has been no comprehensive cross-tool validation that can quantify which computational approaches are most effective. 
+
+A combination of established computational approaches (PROPEP 3.0, CPROPEP, etc.) as well as atomic-scale molecular dynamics simulations (LAMMPS with ReaxFF fields) will provide a much more in-depth analysis regarding multiple formulations. For more information about the digital simulation software used, please reference Section 6: Methods \& Design. 
+
+
+\textbf{Primary Objectives:}
+\begin{enumerate} 
+  \item \textbf{Quantify Simulation Accuracy:} Compare digital predictions of specific impulse ($I_{sp}$) and heat of combustion ($\Delta H^{\circ}_{\text{comb}}$) against real-world measurements across a multitude of AP-based formulations. Values will be calculated such as, but not limited to, correlation coefficients ($R^2$), root mean square error (RMSE), and mean absolute percentage error (MAPE). 
+  \item \textbf{Identify Predictive Patterns:} Measure how metal additives change AP thermal decomposition through catalyst type, concentrations, oxidizer-to-fuel ratios, and particle size distribution. 
+  \item \textbf{Develop Atomic-Scale Insights:} Employing a LAMMPS molecular dynamics simulation with ReaxFF reactive fields to model AP decomposition pathways at the atomic level, both with and without additives. 
+  \item \textbf{Create a Correlative Framework:} To summarize findings from cross-tool comparison, literature meta-analysis, and dynamic simulations into a framework that provides a brief, yet helpful guide for propellant researchers. This will identify the most accurate computational tools on the market while also identifying conditions that are most tolerable for different formulation types. 
+\end{enumerate}
+
+
+\subsection{Significance within the Field}
+This investigation will address a methodological gap within computational design: while simulation tools have been in use and developed for decades, computational power has changed since then, and as such their reliability is poorly documented. By providing an input, while brief on the high-school level, should:
+\begin{itemize}
+  \item Promote simulation testing for computational screening in propellant development, reducing reliance on trial-and-error empirical tests;
+  \item Identify formulations criteria where current tools are trustworthy compared to needing real-world validation;
+  \item Demonstrate a meta-analytical methodology applicable to other propellant systems / reactive materials;
+  \item and documenting best practices for computational chemistry validation studies. 
+\end{itemize}
+
+The integration of equilibrium thermochemistry, literature meta-analysis, and atomic-scale molecular dynamics will bridge property predictions with fundamental chemical mechanisms.
+
+\subsection{Success Criteria}
+
+For this project to be considered complete, the following goals will need to have been achieved with measurable outcomes:
+\begin{itemize}
+  \item Compilation of empirical data from 30+ distinct AP-based formulation in published literature; 
+  \item Generation of predictive $I_{sp}$ and ($\Delta H^{\circ}_{\text{comb}}$) for each formulation in the benchmark using the computational tools; 
+  \item Quantified accuracy metrics for each tool throughout the dataset and for subsets;
+  \item Completion of LAMMPS molecular dynamics simulations for at least 3 representative AP-catalyst systems; 
+  \item Development of a decision framework that provides quantitative guidance on when to trust/verify digital predictions;
+\end{itemize}
+
+

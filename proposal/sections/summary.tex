@@ -1,0 +1,26 @@
+\section{Project Summary}
+\subsection{Overview} 
+
+This project aims to address the correlation between digital simulation predictions and real-life performance data  in Ammonium Perchlorate(AP)-based solid propellants. AP-based propellants are the gold standard in modern rocket systems  due to solid propellants having low storage sensitivity and high reliability over time. On top of this, AP is recognized  for having a significantly higher energy density and ease of disposal which makes it enticing for both hobbyists and  commercial groups alike. However, the performance is heavily dependent on catalytic additives such as \ce{Fe2O3} or \ce{Mg}. 
+
+While computational tools such as PROPEP 3.0, NASA-CEA2, CPROPEP, and RPA show promise in accelerating digital predictive development, general reliability hasn't been properly quantified nor documented. Individual studies report isolated comparisons, but no comprehensive cross-tool validation framework exists. 
+
+
+The analysis integrates three methodologies:
+\begin{enumerate}
+  \item thermochemical equilibrium calculations using software packages to predict $I_{sp}$ and ($\Delta H^{\circ}_{\text{comb}}$); 
+  \item Literature meta-analysis to compile published empirical performance data;
+  \item Atomic-scale molecular dynamics simulations using LAMMPS with ReaxFF fields.
+\end{enumerate}
+
+Through correlation in pathways with measured performance, this work designs a framework that is able to identify where digital models are known to succeed or fail, enabling computational screening with a moderate number of compounds before empirical testing. 
+
+\subsection{Intellectual Merit} 
+
+This study addresses the gap in atomic-scale reaction mechanisms through multi-scale correlation analysis. While existing documents cover a multitude of catalyst effects, there is no proper framework which quantifies how effective modern solutions are in predicting real-world behavior. 
+
+Investigations in simulation accuracy as a function of catalyst type, concentration, and binder systems will reveal patterns that can infer model limitations and insights that future studies could take into consideration when working with digital figures. Integrating ab initio-derived NNP models with traditional codes can represent an approach to understanding how catalytic interactions exist within larger-scale simulations, establishing a relationship currently absent. 
+
+\subsection{Broader Impacts}
+
+This research will speed up development of safer, more effective compounds while reducing overall cost and time required to make realistic decisions. Computational screening will decrease the need for rigorous empirical testing, which in turn will decrease material waste and hazardous exposure to both scientists and testers. 

@@ -1,0 +1,43 @@
+
+\section{Rationale}
+
+\subsection{Research Questions}
+
+This proposal will examine one main question, and two follow-up questions that will address the fundamental reliability to digital propellant design:
+
+\textbf{Primary Question:} How accurate are computational thermochemical tools in predicting experimentally measured metrics across AP-based formulations containing various catalytic metal additives? 
+
+\textbf{Secondary Questions:}
+\begin{enumerate} 
+  \item Do predictive errors correlate with specific catalyst types, concentrations, or other formulation discrepancies? 
+  \item Is atomic-scale molecular dynamics simulations (LAMMPS w/ ReaxFF) detailed enough to reveal mechanisms that can explain the variance between equilibrium-based thermochemical predictions and empirical observation within catalyzed systems?
+\end{enumerate}
+
+\subsection{Connection to the Field}
+The questions above address the central challenge stated within this paper: the propellant digital development process lacks proper quantitative documentation on when computational screening is a viable alternative to experimental validation. While computational tools are able to speed up simulation testing hundreds-fold, their predictions can only be treated as rough estimates at this time. Without a systematic validation process for each solid-propellant, researchers are unable to trust simulation testing as the preliminary screening.
+
+Overall, the combination of questions target an intersection of two well-established research areas—computational performance prediction and catalytic additive effects on AP decomposition pathways—that have been widely disconnected due to a lack of proper infrastructure. Many literature reviews document the changes that catalysts perform on decomposition, yet up to this point no studies have directly stated on how these chemical choices then modify predictive simulation accuracy. Identifying such correlations would reveal fundamental limitations that must be taken into consideration when working with modern modeling softwares. 
+
+\subsection{Hypotheses / Claims}
+With the sheer depth of the research question presented, there are three main hypotheses that may be supported by the data collected:
+\begin{enumerate}
+  \item \textbf{Hypothesis 1:} \textit{Tool Reliability Varies from Age} - Predictive ability from each individualized software will vary (with differing amounts) depending on sophistication due to development period. This will indicate such that newer packages (RPA, NASA-CEA2) will hold a stronger correlation with empirical data compared to older/more simplified tools (CPROPEP, PROPEP 3.0), more notably for complicated formulas.
+  \item \textbf{Hypothesis 2:} \textit{Catalysts Cause Discrepancies} - Compounds holding a higher relative concentration of catalyst to oxidizer will show a larger prediction error compared to uncatalyzed systems. To be more direct, the MAPE will increase as catalyst loading increases, with the change most shown when the decomposition temperature is heavily influenced. 
+  \item \textbf{Hypothesis 3:} \textit{Atomic Mechanisms Explain Deviations} - LAMMPS molecular dynamics simulations will show reaction pathways within catalyzed decomposition that doesn't exist within uncatalyzed systems (pure AP). Having these alternative routes may correlate with higher prediction errors from the equilibrium-based softwares, indicating that equilibrium assumptions are not dependable in the presence of kinetically-controlled reaction routes. 
+\end{enumerate}
+
+\subsection{Implications}
+
+If confirmed with statistical significance: 
+\begin{enumerate}
+  \item \textbf{Hypothesis 1:} \textit{Tool Reliability Varies from Age} - A practical decision framework will be established, where specific tools can be recommended for preliminary screening over mass compounds with sufficient confidence levels. This would enable a software selection based upon formulation characteristics, which would guide software developers towards improvements by emphasizing which implementations can capture the chaos within catalyzed systems best. 
+  \item \textbf{Hypothesis 2:} \textit{Catalysts Cause Discrepancies} - This discovery would reveal a basic limitation within thermochemical codes: equilibrium-based systems cannot sufficiently account for the changes cause by the introduction of catalysts. Thus, current computational screening is only reliable for uncatalyzed systems, while other sorts require empirical validation. In the real-world, this outcome would cause computational tools to be only effective for narrowing formulation spaces rather than defining the best. 
+  \item \textbf{Hypothesis 3:} \textit{Atomic Mechanisms Explain Deviations} - A confirmation would establish the need for atomic-level reaction analysis is necessary for accurate performance prediction within catalyzed systems. It would also demonstrate how mechanistic details matter heavily for macroscopic performance, contrary to the equilibrium assumptions that thermochemical equations depend on. Investments in digitally expensive molecular dynamics simulations would rise as the alternative to the trial-and-error codes, mainly for catalyst systems where reaction mechanisms are poorly characterized. 
+\end{enumerate}
+
+If rejected with insufficient significance: 
+\begin{enumerate}
+  \item \textbf{Hypothesis 1:} \textit{Tool Reliability Varies from Age} - Thus, prediction errors arise from a fundamental shared limitations of equilibrium thermochemistry rather than tool-specific issues. All codes then collectively share the same level of reliability, indicating that packages matter less than having an inherent understanding of the limitations directly when working with new compounds. 
+  \item \textbf{Hypothesis 2:} \textit{Catalysts Cause Discrepancies} - This would validate that catalysts aren't the issue for equilibrium assumption, rather suggesting that the current dependency is accurately captured by modern codes. It would then indicate that kinetic modifications, while real and measurable (DSC/TGA), don't affect the combustion products that determine thrust metrics. 
+  \item \textbf{Hypothesis 3:} \textit{Atomic Mechanisms Explain Deviations} - If atomic mechanisms really don't correlate, then the disconnect between simulation and empirical arises from factors other than the fundamental concepts. This would stipulate that current codes are chemically sound but experimental protocols are faulty in some way.
+\end{enumerate}

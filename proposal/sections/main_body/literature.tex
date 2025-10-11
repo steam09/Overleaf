@@ -1,0 +1,26 @@
+\clearpage
+\section{Brief Literature Review}
+
+\subsection{Background}
+
+Existing literature on AP-based propellants has focused on three primary areas: 
+\begin{itemize}
+  \item an understanding on how catalytic metal additives modify decomposition behavior;
+  \item developing computational tools and their predictive abilities;
+  \item and validating mentioned tools against empirical measurements.
+\end{itemize}
+Computational codes such as NASA-CEA2 and PROPEP 3.0, developed since the late 20th century, operate on equilibrium thermochemistry principles, which assume all combustion products reach equilibrium. While this is the most optimized solution, the predictive accuracy depends on whether such a reaction will achieve the assumed conditions—an assumption that isn't reliable when the inclusion of a catalyst change change such reaction pathways. 
+
+Modern research has documented how catalytic additives—primarily transition metal oxides and nanoscale metals— influence AP decomposition. As AP goes through thermal decomposition, it will progress within two stages: low-temperature decomposition (LTD) around $200-250^\circ \text{C}$, then high-temperature decomposition (HTD) around $400-450^\circ \text{C}$. Catalysts shift these peaks to lower temperatures by creating different pathways, which then reduce the needed activation energies and modify heat release profiles. 
+
+\subsection{Validation of Predictions}
+
+While computational tools have been in development for decades now, systemic validation versus experimental measurements still remain limited. The most up-to-date rigorous work involves mesoscale combustion simulation frameworks against Miller pack empirical data, which demonstrate agreement between predicted and measured burning rates. Experimental measurements techniques show a positive compatibility with maximum differences of around $1.64\%$ under high pressure. 
+
+However, these studies share the same limitation: the focus on specific formulation types rather than a diverse span of catalysts systems and concentrations. The lack of quantifiable predictive accuracy using statistical measurements would enable higher reliability for testing new formulation, compared to the current trial-and-error standard. Most importantly, the papers don't investigate whether prediction errors arise from limitations of equilibrium thermochemistry or tool-specific implementation by the researcher. 
+
+\subsection{Atomic-Scale Modeling}
+Recent advances of technology have allowed atomic simulations of AP decomposition through Neural Network Potential (NNP) models based upon ab initio calculations. Molecular Dynamics (MD) simulations using those NNP models can reproduce experimental trends and reveal detailed reaction proceedings. 
+
+This modeling represents a core part of digital simulation testing for methodological advacement, yet integration with traditional performance prediction is still in its infancy. While NNP/MD simulations provide unparalleled mechanistic detail, the connection to macroscopic performance metrics ($I_{sp}$, $\Delta H^{\circ}_{\text{comb}}$) has not been properly documented. Furthermore, such simulations have not been properly extended to catalyzed AP systems where metal additives could disrupt the optimal reaction pathways that AP decomposition holds. 
+

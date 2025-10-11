@@ -1,0 +1,47 @@
+
+\section{Potential Roadblocks \& Alternative Strategies}
+
+\subsection{Insufficient Data}
+
+Issue: Published literature might not contain enough formulations to meet the criteria set above for 30+ data points. Concentration points might also be unevenly distributed, with outliers depending on formulations. 
+
+Alternative Approaches: 
+\begin{itemize}
+    \item Lower formulations \#: Around $20-25$
+    \item Catalyst Types: Expand to more metal additives than iron/magnesium-based
+    \item Time Range: Use pre-2000s publications with a hint of scrutiny
+\end{itemize}
+
+\subsection{LAMMPS Learning Curve}
+
+Issue: LAMMPS with ReaxFF parameters has a very steep learning curve, which might take more time than anticipated. Simulations could fail to converge, require more powerful computational resources, or unreasonable behavior. 
+
+Alternative Approaches: 
+\begin{itemize}
+    \item Use smaller simulation cells or fewer atoms for computational demands
+    \item Just drop hypothesis 3, as it explored enhancement rather than requirements
+    \item Use cloud computing platforms instead of local (Google Colab or AWS)
+\end{itemize}
+
+\subsection{Inconsistent Literature}
+
+Issue: Published papers could report data under non-standardized conditions, use different units, or omit formulation details. Uncertainties could be excluded, which would make the analysis less accurate. 
+
+Alternative Approaches: 
+\begin{itemize}
+    \item Quality Tiers: Categorizing data by reliability and performing analysis while keeping this discrepancy notated within visuals. 
+    \item Testing different conclusions depending in the inclusion/exclusion of lower-quality data points.
+    \item Use non-parametric tests if data quality is heterogeneous
+\end{itemize}
+
+\subsection{Time Constraints}
+
+Issue: The project timeline listed below, and all the goals above, might not be feasible within the 4 months provided. Academic obligations, technical issues, or complications could decrease testing time before due dates. 
+
+Alternative Approaches: 
+\begin{itemize}
+    \item Prioritize main question over secondaries; treat LAMMPS as an optional enhancement
+    \item Reduce formulation count if necessary
+    \item Use established software packages (scipy, R) rather than developing custom code
+\end{itemize}
+
