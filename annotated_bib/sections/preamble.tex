@@ -1,0 +1,22 @@
+
+\usepackage{graphicx}
+\usepackage{xcolor}
+
+% For rounded framed boxes to highlight citations
+\usepackage[framemethod=tikz]{mdframed}
+
+% Lorem Ipsum Parargraph
+\usepackage{lipsum}
+
+\usepackage[english]{babel}
+\usepackage{csquotes}
+\usepackage[
+  backend=biber,
+  style=ieee,
+  sorting=none,
+  maxcitenames=1,     % In-text: 1 author + et al.
+  mincitenames=1,
+  maxbibnames=1,      % Bibliography: 1 author + et al.
+  minbibnames=1
+]{biblatex}
+\addbibresource{references.bib}
