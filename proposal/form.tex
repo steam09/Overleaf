@@ -1,6 +1,6 @@
-\input{sections/preamble}
-
 \documentclass[11pt,letterpaper]{article}
+
+\input{sections/preamble}
 
 % Additional packages for formatting
 \usepackage[margin=1in]{geometry}
@@ -37,29 +37,26 @@
 
 \section{State your research question and/or project goal(s).}
 
-\textbf{Primary Question:} How accurate are computational thermochemical tools in predicting empirical metrics across AP-based formulations containing catalytic metal additives?
-
-\textbf{Secondary Questions:}
-\begin{enumerate}
-    \item Do predictive errors correlate with specific catalyst types, concentrations, and/or formulation discrepancies?
-    \item Can atomic-scale molecular dynamics simulations (LAMMPS w/ ReaxFF Force Field) reveal mechanisms that are plausible in explaining the variance between equilibrium-based thermochemical predictions and empirical observations within (non)catalyzed systems?
-\end{enumerate}
+\textbf{Primary Question:} Can regression-based correction factors derived from LAMMPS simulations improve the predictive accuracy of PROPEP/NASA-CEA2 outputs for catalyzed AP systems?
 
 \textbf{Main Goals:}
 \begin{itemize}
-    \item Quantifying simulation accuracy through comparing digital predictions of $I_{sp}$ and heat of combustion against empirical measurements across 25--30 AP-based formulations.
-    \item Identifying patterns regarding how certain metal additives change AP thermal decomposition in LAMMPS simulation.
-    \item Develop atomic-scale insights in dynamics simulations with ReaxFF reactive fields.
-    \item Create a correlative framework that gives guidance for propellant researchers in computational tool trustworthiness.
+    \item Quantify / model the deviations between equilibrium-based predictions and empirical results for catalyzed AP formulations
+    \item Derive kinetic and mechanistic parameters from atomistic (ReaxFF) simulations to differ non-equilibrium correction factors applicable to thermochemical codes
+    \item Develop a predictive correction model or reliability index (Computational Reliability Index, CRI) that relates formulation characteristics (catalyst identity, concentration, particle size) to computational accuracy
+    \item Validate the proposed/developed framework through a conjunction between meta-analysis and cross-software benchmarking under standardized conditions
 \end{itemize}
 
 \section{Identify the reasons for choosing the topic of interest and research question/project goal(s).}
 
-I personally chose this topic because I have experience in previous years of science fair designing and testing fuel-efficient propulsion. On top of this, personal work with languages such as R and Python, working with LAMMPS on top of computational tools like CPROPEP 3, NASA-CEA2, and RPA promise to give internal benefits for working for future projects.
+\begin{itemize}
+    \item In the practice of chemical and materials engineering, computational tools have been in development for these exact concepts for years, but those same softwares, as elaborated later, rely on equilibrium thermochemistry principles that may not hold true for catalyzed systems.
+    \item A significant disconnect exists between atomistic simulations, empirical data, and the codes behind the softwares that engineers use. While there are many papers that have used these same tools, with a spike in recent years, the equlibrium assumptions that are made fail to properly capture the non-equilibrium kinetics and mechanisms introduced by catalysts.
+    \item The ability to depend on these softwares with enough confidence can accelerate the development of new and improved formulations, assuming enough documentation and validation exists. These goals are especially aimed at groups who are unable to provide the testing that larger companies can replicate, either due to cost, safety, or time-based constraints. 
+    \item Personal Reasons: Experience in materials science (namely fuel propulsion), programming (Python, R, MATLAB), AP Chemistry, and computational simulation tools. 
+\end{itemize}
 
-The research proposed above can provide a practical need in aerospace engineering, while also not out-of-scope for a HS level project (and not a PhD dissertation\ldots). Combining established empirical data with thermochemical software represents a multi-scale approach that is able to bridge the gap (for me personally) in chemistry and technology (because I am terrible at things only chemistry).
-
-Most importantly though, it has real-world applications: improving screening reliability can reduce costs and time, decrease exposure to dangerous compounds, and accelerate the overall development of rocketry.
+\newpage
 
 \section{Provide a brief annotated list of three key studies that have informed your understanding of the scholarly conversations surrounding your topic. Describe what each has contributed to the development of your inquiry proposal.}
 
@@ -77,6 +74,8 @@ Most importantly though, it has real-world applications: improving screening rel
     This research provides good methodology for the atomic-scale component of the secondary questions, which is using a Neural Network Potential for decomposition kinetics. It provides the reaction network, mechanisms in simpler models, and other transfers that are not always identified when catalysts are introduced. These findings can reveal some plausibility on why combinations could induce variance, and develop the proposal to introduce this ``missing piece'' for advanced-systems combustion modeling.
 \end{enumerate}
 
+\newpage
+
 \section{Identify the gap addressed by your proposed research. Explain how the gap is situated into the scholarly situation. Provide sources to justify the gap your proposed research is addressing.}
 
 While computational tools exist for propellant development since the late 20th century, their predictive ability is still not completely explored and poorly documented across many types of combustion formulations (in this case AP-based ones containing metal additives). No cross-tool validation framework exists that is able to evaluate which computational approaches are most effective under different conditions.
@@ -93,33 +92,36 @@ There are three main research streams:
 
 \end{enumerate}
 
-This gap hindered propellant development efficiency as it has and will delay researchers from confidently weeding out weaker formulations of propellants, as current digital predictions are not accurate enough to facilitate real production and handling for others. Thus, trial and error wastes both time and money, but mainly slows down research.
+Current research lacks a method to correct these errors based on first-principles chemistry. This paper aims to introduce a hybrid framework that uses ReaxFF molecular dynamics to derive atomistically-informed correction factors, culminating in a Computational Reliability Index (CRI) to guide model trustworthiness.
+
+\newpage
 
 \section{Describe your chosen or developed research method and defend its alignment with your research question.}
 
-Meta-analysis methodology with computational prediction w/ a literature review, supplemented by atomic-scale dynamics simulations.
+This study will include a hybrid methodology combining meta-analysis, equilibrium thermochemistry, atomistic simulation, and statistical modeling. The research progresses through four integrated phases:
 
-\textbf{Components}
+\textbf{Phase 1 - Literature Meta-Analysis}
 \begin{itemize}
-    \item \textbf{Meta Analysis} --- Extraction of empirical data from published AP-based formulations across journals, technical reports, \& databases. Benchmark dataset for different catalyst types and concentrations.
-    
-    \item \textbf{Computational Prediction} --- Generating predictions for each standardized formulation using tools (NASA-CEA2, PROPEP 3.0, CPROPEP, RPA, GUIPEP) with ground conditions (sea-level pressure, atmospheric temperature).
-    
-    \item \textbf{Statistical Regression} --- Accuracy metrics ($R^2$, RMSE, MAPE) for comparing computational predictions to empirical values, with a separate analysis for catalyst type \& concentration with below.
-    
-    \item \textbf{Atomic-Scale Simulation} --- LAMMPS dynamics simulations using ReaxFF fields for representative formulations (5 at the moment, might expand or contract depending on time constraints) in identifying changes in reaction pathways between uncatalyzed and catalyzed systems.
+    \item A systematic extraction of empirical performance data ($I_{sp}$, $\Delta H_{comb}^{\circ}$, decomposition kinetics) from peer-reviewed journals, technical reports (NASA, AIAA, AFRL), and materials databases
+    \item Compilation of 25-30 distinct AP-based formulations spanning diverse catalyst systems (Cu,\newline Fe2O3, Mg, CuO, NiO) at varied concentrations
+    \item Documentation of experimental conditions (chamber pressure, temperature, particle size) to enable standardized computational comparison
+    \item Creation of validated benchmark dataset against which computational predictions can be evaluated
 \end{itemize}
 
-\textbf{Defense}
+\textbf{Phase 2 - Literature Meta-Analysis}
 \begin{itemize}
-    \item \textbf{Systemic Validation} --- Comparing many tools against formulations is yes, confounding, but it can also quantify accuracy rather than through isolated case studies (as in the case of multiple papers).
-    
-    \item \textbf{Pattern Recognition} --- Analysis across catalyst types/concentrations reveals if certain characteristics lead to predictive errors, and to document this (and potentially why).
-    
-    \item \textbf{Feasibility} --- Meta-analysis can use laboratory-grade data, which holds better benchmarks / sample sizes compared to a high school setting.
-    
-    \item \textbf{Reproducibility} --- Uses publicly available data and open-source software, which can be verified by others with experience using these tools.
+    \item Generation of theoretical performance metrics for each benchmark formulation using four equilibrium-based tools: NASA-CEA2, PROPEP 3.0, CPROPEP, and RPA Lite
+    \item Standardization of input conditions across all tools - 1000 psi chamber pressure, 298 K initial temperature, sea-level expansion ratio
+    \item Recording of predicted $I_{sp}$, combustion temperature $T_c$, $\Delta H_{comb}^{\circ}$, and exhaust composition
+    \item Calculation of accuracy metrics ($R^2$, RMSE, MAPE) comparing predictions to empirical values
+    \item Analysis by catalyst type, concentration, and formulation complexity to single-out error patterns
 \end{itemize}
+
+\textbf{Phase 3 - Literature Meta-Analysis}
+
+
+
+\newpage
 
 \section{What additional approval processes are required for your research? Select all that apply.}
 
@@ -131,11 +133,13 @@ Meta-analysis methodology with computational prediction w/ a literature review, 
 
 \ding{113} Hazardous materials [requires additional review or approval by school or district processes]
 
-\ding{113} No additional review or approvals required
+\ding{110} No additional review or approvals required
 
 \section{Explain how your proposed method complies with ethical research practice.}
 
-There aren't really any ``ethical practices'' that need to be observed, other than basic connotation of sourcing and management. No human subjects will be at risk of data-leaks, but rather only free-access sets and researcher-side computational testing will be applied.
+No human subjects will be at risk of data-leaks, but rather only free-access sets and researcher-side computational testing will be applied.
+
+\newpage
 
 \section{Describe the data or additional scholarly work that will be generated to answer your proposed research question or achieve your project goal.}
 
