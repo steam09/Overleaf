@@ -1,0 +1,79 @@
+Column Definitions
+Identification & Source
+
+Formulation ID: Unique ID (e.g., Azizi_2025_Mg_2.0)
+Author & Year: First author + year (e.g., Azizi 2025)
+DOI: Digital Object Identifier
+
+Composition - Oxidizer
+
+AP (wt%): Ammonium perchlorate weight percent
+AP Part Size (μm): AP particle size in micrometers
+
+Composition - Catalyst
+
+Catalyst Type: None | Mg | Fe2O3 | CuO | NiO | Co3O4 | Fe5B | CoC2O4 | CuCr2O4 | etc.
+Catalyst (wt%): Catalyst weight percent
+Catalyst Part Size (μm): Catalyst particle size
+
+Composition - Binder
+
+Binder Type: HTPB | PBAN | CTPB | Polyurethane | Sorbitol | Other
+Binder (wt%): Binder weight percent
+
+Composition - Additional Fuel
+
+Fuel Type: Al | None | Other
+Fuel (wt%): Fuel weight percent
+Fuel Part Size (μm): Fuel particle size
+
+Composition - Calculated
+
+O/F Ratio: Oxidizer-to-fuel ratio
+Total (wt%): Sum check (should = 100%)
+
+Experimental Conditions
+
+Init Temp (K): Initial temperature (default: 298)
+Chamb Pres (MPa): Chamber pressure in megapascals
+Chamb Pres (psi): Chamber pressure in psi (default: 1000)
+Expans Rt: Expansion ratio (ε)
+Ambient Pres (atm): Ambient/exit pressure (default: 1)
+
+Primary Performance Metrics
+
+Isp Meas (s): Measured specific impulse in seconds
+Isp StdDev (s): Standard deviation of Isp
+HoC (kJ/kg): Heat of combustion
+HoC StdDev (kJ/kg): Standard deviation of HoC
+Comb Temp (K): Combustion temperature
+Tcomb StdDev (K): Standard deviation of combustion temp
+
+Secondary Performance Metrics
+
+Burn Rate (mm/s): Linear burning rate
+Burn Rate Pres (MPa): Pressure at which burning rate measured
+Pressure Exp (n): Pressure exponent (Saint-Robert's law)
+*c (m/s)**: Characteristic velocity
+
+Thermal Analysis Data (DSC/TGA)
+
+LTD Onset (°C): Low-temp decomposition onset temperature
+LTD Peak (°C): LTD peak temperature
+LTD Heat (J/g): Heat release during LTD
+HTD Onset (°C): High-temp decomposition onset temperature
+HTD Peak (°C): HTD peak temperature
+HTD Heat (J/g): Heat release during HTD
+Total Mass Loss (%): Total mass loss percentage
+Ea (kJ/mol): Activation energy
+
+Data Quality & Metadata
+
+Replicates: Number of test replicates
+Test Method: Motor_Test | Strand_Burner | Bomb_Calorimetry | DSC/TGA | Other
+Std Conditions: Y | N | Partial (standardized conditions?)
+Assumed Values: List assumptions (e.g., "Pres=1000psi, T=298K")
+Unit Conversions: Note conversions made
+Derived Values: Note calculated values (e.g., "O/F from wt%")
+Confidence: High | Medium | Low
+Notes: Free text for important details
