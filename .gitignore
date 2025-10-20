@@ -1,8 +1,6 @@
 build
 .vscode
-<<<<<<< HEAD
 texput.log
-=======
 form.aux
 form.fdb_latexmk
 form.fls
@@ -21,4 +19,6 @@ main.out
 main.run.xml
 notes.txt
 questions.txt
->>>>>>> annotated_bib
+cea-exec/
+personal.md
+table_output.tex
