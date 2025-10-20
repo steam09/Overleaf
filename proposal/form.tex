@@ -1,0 +1,347 @@
+\documentclass[11pt,letterpaper]{article}
+
+\input{sections/preamble}
+
+% Additional packages for formatting
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{pifont}
+
+% Checkbox setup
+\newlist{todolist}{itemize}{2}
+\setlist[todolist]{label=$\square$}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+\newcommand{\done}{\rlap{$\square$}{\raisebox{2pt}{\large\hspace{1pt}\cmark}}%
+\hspace{-2.5pt}}
+\newcommand{\wontfix}{\rlap{$\square$}{\large\hspace{1pt}\xmark}}
+
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\begin{document}
+
+\begin{center}
+    {\LARGE\bfseries STEM/AP Research}\\[0.3em]
+    {\Large Inquiry Proposal Form}
+\end{center}
+
+\vspace{1em}
+
+\textit{In conjunction with the other forms provided, complete each of the items below prior to inquiry proposal submission. Ensure that all materials submitted are accurate, consistent, and reflective of the professional quality of your work.}
+
+\vspace{1em}
+
+\section{DONE State your research question and/or project goal(s).}
+
+\textbf{Primary Question:} Can regression-based correction factors derived from LAMMPS simulations improve the predictive accuracy of PROPEP/NASA-CEA2 outputs for catalyzed AP systems?
+
+\textbf{Main Goals:}
+\begin{itemize}
+    \item Quantify / model the deviations between equilibrium-based predictions and empirical results for catalyzed AP formulations
+    \item Derive kinetic and mechanistic parameters from atomistic (ReaxFF) simulations to differ non-equilibrium correction factors applicable to thermochemical codes
+    \item Develop a predictive correction model or reliability index (Computational Reliability Index, CRI) that relates formulation characteristics (catalyst identity, concentration, particle size) to computational accuracy
+    \item Validate the proposed/developed framework through a conjunction between meta-analysis and cross-software benchmarking under standardized conditions
+\end{itemize}
+
+\section{DONE Identify the reasons for choosing the topic of interest and research question/project goal(s).}
+
+\begin{itemize}
+    \item In the practice of chemical and materials engineering, computational tools have been in development for these exact concepts for years, but those same softwares, as elaborated later, rely on equilibrium thermochemistry principles that may not hold true for catalyzed systems.
+    \item A significant disconnect exists between atomistic simulations, empirical data, and the codes behind the softwares that engineers use. While there are many papers that have used these same tools, with a spike in recent years, the equlibrium assumptions that are made fail to properly capture the non-equilibrium kinetics and mechanisms introduced by catalysts.
+    \item The ability to depend on these softwares with enough confidence can accelerate the development of new and improved formulations, assuming enough documentation and validation exists. These goals are especially aimed at groups who are unable to provide the testing that larger companies can replicate, either due to cost, safety, or time-based constraints. 
+    \item Personal Reasons: Experience in materials science (namely fuel propulsion), programming (Python, R, MATLAB), AP Chemistry, and computational simulation tools. 
+\end{itemize}
+
+\newpage
+
+\section{Provide a brief annotated list of three key studies that have informed your understanding of the scholarly conversations surrounding your topic. Describe what each has contributed to the development of your inquiry proposal.}
+
+\begin{enumerate}
+    \item \textbf{Azizi et al. (2025). Heat of Combustion and Thermal Decomposition of Ammonium Perchlorate/Sorbitol Solid Propellant with Metal Additives}
+    
+    This study talks about how to calculate theoretical $I_{sp}$ of different AP/Sorbitol formulations containing the additives using PROPEP 3.0. Comparing those theoretical $I_{sp}$ values with the empirical ones results in the heat of combustion through calorimetry. It addresses the challenge that computational equilibrium codes might fail to capture the full energetic benefit of additives, which necessitates the need for other softwares and an atomic-scale simulation. Findings suggest that the addition of metal catalysis increases the heat of combustion, while the $I_{sp}$ is still unclear in correlation, which could be interesting to talk about in patterns and why they may have occurred.
+    
+    \item \textbf{Yadav et al. (2021). Recent advances in catalytic combustion of AP-based composite solid propellants}
+    
+    This review establishes the basic observations (qualitative) regarding how additives influence performance, another source for empirical data. Yadav focuses mainly on the transition metal oxides, through how they reduce activation energy (see in LAMMPS), High-Temperature Decomposition, and heat release over time. It shapes the second question in how some pattern errors might correlate to specific catalysis types/concentrations, which might be dependent on particle size, surface area, and/or crystalline structure formations.
+    
+    \item \textbf{Chu et al. (2023). A reaction network of AP decomposition: the missing piece from atomic simulations}
+    
+    This research provides good methodology for the atomic-scale component of the secondary questions, which is using a Neural Network Potential for decomposition kinetics. It provides the reaction network, mechanisms in simpler models, and other transfers that are not always identified when catalysts are introduced. These findings can reveal some plausibility on why combinations could induce variance, and develop the proposal to introduce this ``missing piece'' for advanced-systems combustion modeling.
+\end{enumerate}
+
+\newpage
+
+\section{Identify the gap addressed by your proposed research. Explain how the gap is situated into the scholarly situation. Provide sources to justify the gap your proposed research is addressing.}
+
+While computational tools exist for propellant development since the late 20th century, their predictive ability is still not completely explored and poorly documented across many types of combustion formulations (in this case AP-based ones containing metal additives). No cross-tool validation framework exists that is able to evaluate which computational approaches are most effective under different conditions.
+
+\textbf{Scholarly Context}
+
+There are three main research streams:
+\begin{enumerate}
+    \item \textbf{Computational Tool Development} --- Developed tools (such as RPA, CPROPEP, etc.), but they all use similar equilibrium thermochemistry principles. However, they have isolated comparison data sets rather than correlated validation across multiple sets.
+    
+    \item \textbf{Catalytic Additive Research} --- Much literature document how transition metal oxides and nanoscale metals modify AP decomposition by altering pathways and activation energies. But, the studies focus on a mechanistic understanding rather than how these changes affect computational accuracy.
+    
+    \item \textbf{Atomic-Scale Modeling} --- Advances in NNP/MD simulations provide details about decomposition, but integration between traditional performance prediction tools is still mediocre. Connections between molecular-atomic level mechanisms and macroscopic metrics are not properly established.
+
+\end{enumerate}
+
+Current research lacks a method to correct these errors based on first-principles chemistry. This paper aims to introduce a hybrid framework that uses ReaxFF molecular dynamics to derive atomistically-informed correction factors, culminating in a Computational Reliability Index (CRI) to guide model trustworthiness.
+
+\newpage
+
+\section{DONE Describe your chosen or developed research method and defend its alignment with your research question.}
+
+This study will include a hybrid methodology combining meta-analysis, equilibrium thermochemistry, atomistic simulation, and statistical modeling. The research will progress through four main integrated phases:
+
+\textbf{Phase 1 - Literature Meta-Analysis}
+\begin{itemize}
+    \item A systematic extraction of empirical performance data ($I_{sp}$, $\Delta H_{comb}^{\circ}$, decomposition kinetics) from peer-reviewed journals, technical reports (NASA, AIAA, AFRL), and materials databases
+    \item Compilation of 25-30 distinct AP-based formulations spanning diverse catalyst systems (Cu,\newline Fe2O3, Mg, CuO, NiO) at varied concentrations
+    \item Documentation of experimental conditions (chamber pressure, temperature, particle size) to enable standardized computational comparison
+    \item Creation of validated benchmark dataset against which computational predictions can be evaluated
+\end{itemize}
+
+\textbf{Phase 2 - Literature Meta-Analysis}
+\begin{itemize}
+    \item Generation of theoretical performance metrics for each benchmark formulation using four equilibrium-based tools: NASA-CEA2, PROPEP 3.0, CPROPEP, and RPA Lite
+    \item Standardization of input conditions across all tools - 1000 psi chamber pressure, 298 K initial temperature, sea-level expansion ratio
+    \item Recording of predicted $I_{sp}$, combustion temperature $T_c$, $\Delta H_{comb}^{\circ}$, and exhaust composition
+    \item Calculation of accuracy metrics ($R^2$, RMSE, MAPE) comparing predictions to empirical values
+    \item Analysis by catalyst type, concentration, and formulation complexity to single-out error patterns
+\end{itemize}
+
+\textbf{Phase 3 - Molecular Dynamics Simulations}
+\begin{itemize}
+    \item Selection of representative formulations (5-7) from the benchmark set for detailed atomic-scale analysis
+    \item LAMMPS Simulation using ReaxFF force fields to model thermal decomposition of AP with/without catalysts
+    \begin{itemize}
+        \item NPT ensemble equilibration at 298 K for 50–100 ps
+        \item Production will run for 2-5 nanoseconds to capture decomposition events
+        \item ReaxFF is chosen for its ability to:
+        \begin{enumerate}
+            \item Simulate dynamic bond/formation/breaking in real reactions
+            \item Configure 5k - 10k atoms over the 5 nanoseconds ran (sufficient enough to ignore ab. initio method that have quantum accuracy)
+            \item Previous force fields validated for AP and metal oxides in established literature
+        \end{enumerate}
+        \item Neural Network Potentials (NNP), while more accurate, lack the validation to be used for extensive research, and is beyond the scope of this project
+    \end{itemize}
+    \item Extraction of kinetic parameters from trajectories: activation energies ($E_a$), pre-exponential factors (A), decomposition rate constants
+    \item Identification of reaction pathways, intermediate species populations, and mechanistic deviations from uncatalyzed systems
+    \item Quantification of non-equilibrium effects induced by catalytic additives
+\end{itemize}
+
+\textbf{Phase 4 - Multivariate Machine Learning}
+\begin{itemize}
+    \item Integration of LAMMPS-derived kinetic parameters with formulation descriptors (catalyst identity, concentration, particle size, oxidizer-to-fuel ratio) as input features
+    \item Training of multivariate regression model (Random Forest or Gaussian Process Regression depending on time) to predict magnitude of computational error for equilibrium-based tools
+    \item Feature importance analysis (e.g., SHAP values) to identify formulation variables most \newline strongly influence predictive ability
+    \item Potentially developing a Computational Reliability Index (CRI) with:
+    \begin{itemize}
+        \item CRI $\le$ 0.8: Computational predictions reliable for design decisions
+        \item 0.5 $\le$ CRI $\le$ 0.8: Predictions suitable for preliminary screening, caution advised
+        \item RI $\le$ 0.5: Empirical validation required due to kinetically-controlled effects
+    \end{itemize}
+\end{itemize}
+
+\newpage
+
+\section{DONE What additional approval processes are required for your research? Select all that apply.}
+
+\ding{113} Human subjects [requires additional IRB review and approval if student wants to publish and/or publicly present]
+
+\ding{113} Animal subjects [requires additional review or approval by school or district processes]
+
+\ding{113} Harmful microorganisms [requires additional review or approval by school or district processes]
+
+\ding{113} Hazardous materials [requires additional review or approval by school or district processes]
+
+\ding{110} No additional review or approvals required
+
+\section{DONE Explain how your proposed method complies with ethical research practice.}
+
+No human subjects will be at risk of data-leaks, but rather only free-access sets and researcher-side computational testing will be applied.
+
+\newpage
+
+\section{DONE Describe the data or additional scholarly work that will be generated to answer your proposed research question or achieve your project goal.}
+
+\begin{enumerate}
+    \item \textbf{Benchmark Dataset}
+    \begin{itemize}
+        \item Database (personally compiled) of AP-based propellant formulations from published, open-access literature
+        \item Empirical performance metrics ($I_{sp}$, seconds) and heat of combustion ($\Delta H_{comb}^{\circ}$, kJ/kg)
+        \item Catalyst types, concentrations, oxidizer/fuel ratios, and particle sizes
+        \item Experimental conditions: chamber pressure, temperature, expansion ratio, calorimetry methods
+        \item Target: 25–30 distinct formulations over catalyst systems
+    \end{itemize}
+    
+    \item \textbf{Computational Predictions}
+    \begin{itemize}
+        \item Predicted $I_{sp}$ and $\Delta H_{comb}^{\circ}$ for each formulation using four tools: NASA-CEA2, PROPEP 3.0, CPROPEP, and RPA Lite
+        \item Secondary outputs: combustion temperature ($T_{ad}$), exhaust composition, characteristic velocity ($c^*$)
+        \item Standardized input conditions applied consistently across all tools
+        \item Deviation calculations: percent error, absolute error for each combo
+    \end{itemize}
+    
+    \item \textbf{Accuracy Metrics}
+    \begin{itemize}
+        \item Overall tool performance: correlation coefficients ($R^2$), root mean square error (RMSE), mean absolute percentage error (MAPE)
+        \item Accuracy analysis by catalyst type (Fe$_2$O$_3$, Cu, Mg, etc.), concentration ranges (0–10\% by weight), \& formulation complexity
+        \item Comparative analysis identifying which tools perform best under specific conditions
+        \item Statistical significance testing (ANOVA) for differences between tool accuracies
+    \end{itemize}
+    
+    \item \textbf{Molecular Dynamics Simulations}
+    \begin{itemize}
+        \item LAMMPS trajectory files for 5–8 representative formulations (uncatalyzed baseline, high-performers, high-error cases)
+        \item Extracted kinetic parameters: activation energies ($E_a$, kJ/mol), pre-exponential factors ($A$), decomposition rate constants
+        \item Reaction pathway diagrams identifying bond-breaking sequences and intermediate \newline species formation
+        \item Quantification of mechanistic deviations: comparison of catalyzed vs. uncatalyzed decomposition mechanisms
+        \item Time-resolved species populations and energy release profiles
+    \end{itemize}
+    \item \textbf{Hybrid Correction Framework \& CRI}
+    \begin{itemize}
+        \item Machine learning model (Random Forest or Gaussian Process Regression) predicting computational tool error as a function of formulation characteristics and atomistic kinetic parameters
+        \item Model validation metrics: cross-validation performance, MAPE reduction relative to uncorrected predictions, generalization testing on withheld formulations
+    \end{itemize}
+    
+    \item \textbf{Decision Framework Documentation}
+    \begin{itemize}
+        \item Workflow diagrams illustrating when to apply specific computational tools based on formulation characteristics
+        \item Best practices guide for propellant researchers: tool selection recommendations, reliability limitations, and validation requirements
+        \item Case studies demonstrating CRI application to novel formulations not in the training dataset
+    \end{itemize}
+\end{enumerate}
+
+\textbf{Visualizations}
+\begin{itemize}
+    \item Scatter plots: predicted vs. empirical values with regression lines and confidence intervals for each tool
+    \item Heat maps: accuracy metrics ($R^2$, MAPE) across catalyst type and concentration matrices
+    \item Error distribution histograms: tool-specific and formulation-specific prediction error patterns
+    \item Molecular visualizations: reaction pathway diagrams from LAMMPS trajectories showing catalyzed vs. uncatalyzed mechanisms
+    \item Feature importance plots: SHAP value summaries identifying key drivers of prediction accuracy
+    \item CRI distribution plots: confidence score distributions across the benchmark dataset
+    \item Tool comparison radar charts: multi-dimensional performance comparisons across accuracy metrics
+\end{itemize}
+
+\newpage
+
+\section{Describe the way you will analyze the data or additional scholarly work generated by your method and justify its alignment with your research question and/or project goal.}
+
+\textbf{Statistical Analysis:}
+\begin{itemize}
+    \item Calculating metrics for comparing predicted vs empirical $I_{sp}$ and $\Delta H$ values
+    \item Using ANOVA to test accuracy differences between tools
+    \item Regression analysis on prediction errors through types, concentrations, or other variables
+    \item Accuracy test in uncatalyzed vs catalyzed systems and by concentration ranges
+\end{itemize}
+
+\textbf{Molecular Dynamics Analysis:}
+\begin{itemize}
+    \item Reaction pathways from LAMMPS simulations that differ by catalyst type groupings
+    \item Activation energies and comparing those to literature values
+    \item Pathways complexity and error magnitude of non-equilibrium mechanisms would describe decomposition better than current software, and if so in what cases
+\end{itemize}
+
+\textbf{Framework Development:}
+\begin{itemize}
+    \item Decision guidance documentation which can link formulation characteristics to which tool to use
+    \item Confidence thresholds for when certain computational predictions are good enough vs need empirical validation
+\end{itemize}
+
+\textbf{Analytical Tools:} Python (pandas/scipy)
+
+\textbf{Alignment:} Quantifies computational tool accuracy, error patterns by formulation characteristics, and atomic mechanisms to predictive deviations.
+
+\newpage
+
+\section{List any equipment, resources, and permissions needed to collect data or information. Attach the initial drafts that apply to your proposal if engaged in human subject research: informed consent forms; surveys, interview questions, questionnaires, or other data collection devices; or letters/flyers that will be distributed to study subjects.}
+
+\textbf{Computer \& Software (Open-Source [Not the computer haha])}
+\begin{itemize}
+    \item Personal / School-based computer with NASA-CEA2, PROPEP 3.0, CPROPEP, RPA Lite, GUIPEP
+    \item LAMMPS w/ ReaxFF force fields
+    \item Python including pandas/scipy; VMD/OVITO for visualization
+    \item If needed, use Google Colab, AWS, or Jupyter Notebooks for computing power
+    \item SciKit-Learn w/ pandas: one for data cleaning and organizing, one for training the model
+\end{itemize}
+
+\textbf{Literature Access}
+\begin{itemize}
+    \item Google Scholar, ResearchGate, NASA Technical Reports, JSTOR, ScienceDirect, other journals
+\end{itemize}
+
+No permissions from IRB, laboratory approval, or database access until further notice. No attached forms for human subjects.
+
+\newpage
+
+\section{Describe the anticipated logistical and personnel challenges for your research project (to collect and analyze data or pursue research methods appropriate to a paper that supports a performance/exhibit/product).}
+
+\begin{enumerate}
+    \item \textbf{Literature Data Availability}
+    \begin{itemize}
+        \item Maybe not find 30+ formulations for the criteria, or uneven catalyst/concentration coverage
+        \item Lower \# of formulations (20--25), expand additive types, or pre-2000s sources (with skepticism)
+    \end{itemize}
+    
+    \item \textbf{LAMMPS is hard}
+    \begin{itemize}
+        \item It's a steep learning curve, simulations can fail or require computing power that I do not have
+        \item Trust me, I got this (hopefully\ldots\ maybe\ldots\ I'll try my best)
+    \end{itemize}
+    
+    \item \textbf{Literature Reporting}
+    \begin{itemize}
+        \item Conditions, units, or other uncertainties
+        \item Data quality tiers; sensitivity to lower-``quality'' data; non-parametric tests
+    \end{itemize}
+    
+    \item \textbf{Time Time Time}
+    \begin{itemize}
+        \item This is an ambitious project for 4 months
+        \item If need be, scrap LAMMPS usage
+    \end{itemize}
+\end{enumerate}
+
+\section{Provide a brief timeline that outlines your process from now through project completion.}
+
+See Section 8 (page 14) of attached research proposal for detailed timeline with monthly breakdown and key milestones. I made it look nice...
+
+\section{Discuss the anticipated value and/or broader implications of your research project.}
+
+\textbf{Scientific Value:} Validation methodology for computational propellant design tools; bridging chemistry and engineering performance through atomic-scale mechanisms with prediction errors
+
+\textbf{Practical Impact:} Accelerated development of formulations, fewer iterations to save materials, and less hazardous materials overall
+
+\textbf{Broader Implications:} Simpler for smaller organizations to develop cheaper formulations, especially with limited materials
+
+\textbf{Limitation:} Cannot replace physical empirical validation, but it does enough to scrap out the terrible ones
+
+\vspace{1em}
+
+For any further questions, please direct to the correlated section of the pdf attached within the same Google Drive folder.
+
+\vspace{2em}
+
+\textbf{Review team feedback:}
+
+\vspace{2em}
+
+\textbf{STEM/AP Research Teacher's Approval (signature):} \rule{6cm}{0.4pt}
+
+\vspace{1em}
+
+\textbf{IRB Approval Date:} \rule{6cm}{0.4pt}
+
+\vspace{1em}
+
+\textbf{Mentor/Expert Adviser(s):} \rule{6cm}{0.4pt}
+
+\end{document}
