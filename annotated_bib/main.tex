@@ -87,20 +87,13 @@ VST & Vacuum Stability Test & A compatibility test to measure gas release. \\
 
 \newpage
 \section{Questions}
-1. Primary Question: How accurate are computational thermochemical tools in predicting experimentally measured metrics across AP-based formulations containing various catalytic metal additives?
-
-2. Secondary Question 1: Do predictive errors correlate with specific catalyst types, concentrations, or other formulation discrepancies?
-
-3. Secondary Question 2: Is atomic-scale molecular dynamics simulations (LAMMPS w/ ReaxFF) detailed enough to reveal mechanisms that can explain the variance between equilibrium-based thermochemical predictions and empirical observation within catalyzed systems?
+\begin{enumerate}
+    \item Primary Question: How accurate are computational thermochemical tools in predicting experimentally measured metrics across AP-based formulations containing various catalytic metal additives?
+    \item Secondary Question 1: Do predictive errors correlate with specific catalyst types, concentrations, or other formulation discrepancies?
+    \item Secondary Question 2: Is atomic-scale molecular dynamics simulations (LAMMPS w/ ReaxFF) detailed enough to reveal mechanisms that can explain the variance between equilibrium-based thermochemical predictions and empirical observation within catalyzed systems?
+\end{enumerate}
 
 \newpage
-\section{Sources}
-
-These sources and their analysis only include the ones considered "informational", as they provide a basis for understanding the empirical effects of catalysts and formulation parameters on AP decomposition and propellant performance. 
-
-Sources that primarily focus on computational methods without empirical data (e.g., purely theoretical studies or software manuals) are excluded.
-
-
 
 
 \newpage
@@ -127,6 +120,13 @@ Sources that primarily focus on computational methods without empirical data (e.
         \item Current Status: Without quantitative documentation, the results from these digital prediction tools are generally treated only as rough estimates. The lack of quantifiable accuracy using statistical metrics (like $R^2$ or MAPE) makes researchers hesitant to rely on computational screening as a substitute for experimental validation.
     \end{enumerate}
     \item Validation Requirements - Empirical Data are Needed for Validation: The calculated $I_{sp}$ values must be correlated with experimentally derived data, such as the heat of combustion ($\Delta H_{comb}$) \cite{Azizi2024} or burning rate (r) \cite{Yaman2014}, especially in complex systems containing metallic additives \cite{Wang2025}.
+    \item With ReaxFF, the fundamental challenge in implementation is the fidelity gap between computationally intensive quantum mechanincal (QM) approaches and the low-classical simulations \cite{Senftle2016}.
+    \begin{itemize}
+        \item Energy Formulation - Total energy of system ($E_{system}$) is the sum of distinct partial energy terms \cite{Han2015}. Contributions include but are not limited to bond energy, penalties for overcoordinated atoms, inclusions from undercoordinated atoms, valence angle energy, conjugation effects, torsional energy, van der Waals interactions, and Coulombic interactions. \cite{Han2015}
+        \item Parameterization Scope: Original ReaxFF parameters developed for organic materials but now nonmetallic and metallic elements \cite{Han2015} \cite{Senftle2016}. Cover propellant systems including $Si/O$, $Al/Al2O3$, $Mg/MgH$, $Li$, $Fe/O/H$, and $AN$.
+        \item Instability - Original architecture had discontinuity in total bond order realtive to interatomic distance, due to cutoff functions \cite{Furman2019} \cite{Leven2021}. Resulted in numerical Stability problems $\rightarrow$ poor energy conservation \& high total energy drift rates during MD sims. 
+        \item Modeling Issues - Traditional distribution schemes (e.g. Charge Equilibrium (QEq) or Electronegativity Equalization Method (EEM)) lead to unrealistic oscillations of long-range charge transfer \cite{Leven2021} \cite{Han2015}. Atom-condensed Kohn-Sham DFTs to the ACKS2 scheme proposed to solve this issue \cite{Furman2019}.
+    \end{itemize}
 \end{itemize}
 
 \subsection{Catalyst and Formulation Parameters}
@@ -136,12 +136,12 @@ Sources that primarily focus on computational methods without empirical data (e.
     \begin{itemize}
         \item The type of catalyst significantly determines the thermal response, influencing key metrics like the high-temperature decomposition ($T_{HTD}$) peak \cite{Yadav2021} \cite{Chandrababu2023} \cite{Zhou2025}.
         \item Specific metal additives, such as copper (Cu) and zinc (Zn) nanometals, are highly effective, with Zn achieving the largest reduction in $T_{HTD}$ (up to $93^\circ C$) and Cu yielding the highest heat release \cite{Chandrababu2023}.
-        \item Complex catalysts like Fe-based MOFs and $\text{CuCr}_2\text{O}_4$ drastically accelerate decomposition kinetics, reducing the HTD temperature by over $100^\circ C$ and substantially increasing heat release ($\Delta H$) \cite{Guo2025} \cite{Hosseini2019} \cite{Peng2020}.
+        \item Complex catalysts like Fe-based MOFs and $\text{CuCr}_2\text{O}_4$ drastically accelerate decomposition kinetics, reducing the HTD temperature by over $100^\circ C$ and substantially increasing heat release ($\Delta H$) \cite{Guo2025} \cite{Hosseini2019} \cite{Peng2025}.
     \end{itemize}
     \item Physical Parameters
     \begin{enumerate}
         \item Bulk Composition: Propellant performance is highly sensitive to the physical state of the ingredients, particularly particle size and mixture homogeneity \cite{Aziz2015} \cite{Cang2023} \cite{Yadav2021}.
-        \item Nanosized Advantage: Nanosized additives (Cu, Ni, Zn) are documented to have superior catalytic activity compared to microsized counterparts due to higher surface area, accelerating exothermic decomposition \cite{Song2008} \cite{Chaturvedi2019} \cite{Yadav2021}.
+        \item Nanosized Advantage: Nanosized additives (Cu, Ni, Zn) are documented to have superior catalytic activity compared to microsized counterparts due to higher surface area, accelerating exothermic decomposition \cite{Song2008} \cite{Chaturvedi2015} \cite{Yadav2021}.
         \item Intimate Contact: The close physical contact achieved through advanced formulation methods, such as embedding the catalyst (like copper chromite, CC) within the AP particle structure, results in a far more pronounced catalytic effect, altering the decomposition kinetics from the initial Low-Temperature Decomposition (LTD) stage onward \cite{Saha2024} \cite{Hosseini2019}.
     \end{enumerate}
     \item Formulation Variables - Formulation Ratios and Confinement Impact Kinetics: Adjusting the oxidizer-to-fuel ratio (Oxygen Balance, OB) fundamentally changes the thermokinetic parameters and hazard level of the composite \cite{Guo2024}. Furthermore, experimental parameters like increased sample mass (space confinement) can shift the decomposition peak to a lower temperature, influencing measured kinetics \cite{Li2022}.
@@ -155,8 +155,8 @@ Synergistic Interactions}
     
     \item Quantifying Catalytic Effects
     \begin{itemize}
-        \item Kinetics Quantify Catalytic Errors: Isoconversional methods (e.g., FWO, Kissinger, Ozawa) provide quantifiable kinetic parameters ($E_\alpha$)  that show the magnitude of the catalyst induced shift \cite{Boukeciat2025} \cite{Guo2024} \cite{Peng2020} \cite{Chandrababu2023}.
-        \item Example: In copper-catalyzed systems, the activation energy $(E_\alpha)$ for AP decomposition can be reduced significantly (e.g., from 207 $kJ\cdot mol^{-1}$ to 128 $kJ\cdot mol^{-1}$) due to the specific catalyst \cite{Peng2020} \cite{Chandrababu2023}.
+        \item Kinetics Quantify Catalytic Errors: Isoconversional methods (e.g., FWO, Kissinger, Ozawa) provide quantifiable kinetic parameters ($E_\alpha$)  that show the magnitude of the catalyst induced shift \cite{Boukeciat2025} \cite{Guo2024} \cite{Peng2025} \cite{Chandrababu2023}.
+        \item Example: In copper-catalyzed systems, the activation energy $(E_\alpha)$ for AP decomposition can be reduced significantly (e.g., from 207 $kJ\cdot mol^{-1}$ to 128 $kJ\cdot mol^{-1}$) due to the specific catalyst \cite{Peng2025} \cite{Chandrababu2023}.
     \end{itemize}
     
     \item Atomic-Scale Mechanisms
@@ -179,8 +179,8 @@ Synergistic Interactions}
 
 \begin{enumerate}
     \item Catalyst Purpose: Catalytic metal additives (such as copper oxide (CuO), iron oxide $(\text{Fe}_2\text{O}_3)$, or various nanoparticles) are used precisely because they dramatically accelerate the thermal decomposition of AP, enabling high burn rates \cite{Yadav2021} \cite{Vara2019} \cite{Chandrababu2023}.
-    \item Kinetic Alterations: These catalysts change the thermal decomposition profile of AP by shifting the high-temperature decomposition (HTD) peak to a much lower temperature and significantly reducing the required activation energy \cite{Yadav2021} \cite{Benhammada2020} \cite{Peng2020} \cite{Li2022}.
-    \item Kinetic Alterations: These catalysts change the thermal decomposition profile of AP by shifting the high-temperature decomposition (HTD) peak to a much lower temperature and significantly reducing the required activation energy \cite{Yadav2021} \cite{Benhammada2020} \cite{Peng2020} \cite{Li2022}.
+    \item Kinetic Alterations: These catalysts change the thermal decomposition profile of AP by shifting the high-temperature decomposition (HTD) peak to a much lower temperature and significantly reducing the required activation energy \cite{Yadav2021} \cite{Benhammada2020} \cite{Peng2025} \cite{Li2022}.
+    \item Kinetic Alterations: These catalysts change the thermal decomposition profile of AP by shifting the high-temperature decomposition (HTD) peak to a much lower temperature and significantly reducing the required activation energy \cite{Yadav2021} \cite{Benhammada2020} \cite{Peng2025} \cite{Li2022}.
     \item Correlation Hypothesis: This paper hypothesizes that formulations containing a higher relative concentration of catalyst will exhibit larger prediction errors in the equilibrium codes. The increased error is expected to be most visible when the catalyst significantly influences the decomposition temperature.
     \item Discrepancies in Focus: Factors such as catalyst type, particle size, surface area, and crystalline structure all influence catalytic efficiency \cite{Yadav2021} \cite{Rodriguez2019}. These detailed interactions may be the source of predictive difficulty for simple equilibrium models.
     \item Optimal Concentration: Experimental data suggests that an optimal catalyst concentration exists (e.g., between 0.75\% and 1\% $\text{Fe}_2\text{O}_3$) where performance peaks before decreasing due to competing effects \cite{Rodriguez2019}. Such non-linear behavior may translate to varying degrees of predictive errors depending on the loading percentage.
@@ -192,6 +192,11 @@ Synergistic Interactions}
     \item Need for Mechanisms: The detailed reaction network and exact mechanisms involved during AP thermal decomposition are considered the "missing piece" in high-fidelity combustion models \cite{Chu2023}. Simple models struggle particularly when energetic additives or catalysts are introduced.
     \item LAMMPS Role (Hypothesis): The core hypothesis of this proposal is that LAMMPS molecular dynamics simulations using the ReaxFF force field will successfully reveal alternative reaction pathways in catalyzed systems . These alternative routes represent kinetically-controlled mechanisms that deviate from the standard equilibrium path, thus explaining why equilibrium-based thermochemical codes fail to accurately predict the final macroscopic performance metrics like $I_{sp}$.
     \item Bridging the Scales: By identifying these atomic-level pathways, the research aims to bridge the disconnect between molecular-atomic mechanisms and macroscopic performance predictions, establishing a relationship currently absent in the literature.
+    \item ReaxFF uses bond-order formalism to simulate reactivity in ways other FF can't \cite{Senftle2016}. 
+    \item Bond Order - Designed to bridge computation gap in QM and classical MD due to reliance on large-scale dynamic evolution and potentials that rely on fixed connectivity. Capacity stems from calculating bond order from interatomic distances, allows for the modeling of bond formation and breaking on a differentiable Potential Energy Surface (PES) \cite{Han2015}. Needed for the long-distance covalent interactions to represent transition state structures and predict reaction barriers. 
+    \item Explicit Electrons (eReaxFF) - Systems where charge and polarization dynamics are central, in redox chem or batteries, eReaxFF extension used to explicitly model valence electrons \cite{Leven2021}. Enables more accurate charge distribution and transfer modeling, critical for catalysis involving electron transfer mechanisms. Allows eReaxFF to handle charge transfer processes effectively, a limitation faced by standard ReaxFF methods with fixed charge schemes.
+    \item Development branches (combustion, aqueous, batteries) show versatility \cite{Senftle2016}. Combustion branch relevant for propellant systems, has been used to model energetic materials and metal oxidation processes \cite{Chu2023} \cite{Yadav2021}. For example, the high-energy material description relevant to AP decomposition was successfully combined with the combustion branch (Senftle, 2016).
+    \item 
 \end{enumerate}
 
 \subsection{Overview of Propellant Literature Sources}
@@ -213,9 +218,9 @@ Synergistic Interactions}
     \item Nano-Effects: Nano-sized catalysts (e.g., Fe, Co, Ni, Cu, Zn, or their oxides/alloys) exhibit significantly better catalytic activity compared to bulk materials due to their large surface area and small particle size.
     \item Specific Decomposition Reductions: The optimal composition of 77\% AP/23\% sorbitol, with metal additives (Magnesium or ferrous oxide), lowers the AP thermal decomposition temperature to 210.38°C.
     \item Ferric oxide addition (0.05\%) lowered the AP/sorbitol ignition temperature to 199.15°C and merged two exothermic peaks into a single peak (Azizi et al., 2025).
-    \item $\text{Cu}_3(\text{BTC})_2$ reduced the AP high-temperature decomposition (HTD) peak temperature from $442^\circ C$ to around $340^\circ C$ and lowered the apparent $E_\alpha$ from 207 $kJ\cdot mol^{-1}$ to approximately 128 $kJ\cdot mol^{-1}$ \cite{Peng2020}.
+    \item $\text{Cu}_3(\text{BTC})_2$ reduced the AP high-temperature decomposition (HTD) peak temperature from $442^\circ C$ to around $340^\circ C$ and lowered the apparent $E_\alpha$ from 207 $kJ\cdot mol^{-1}$ to approximately 128 $kJ\cdot mol^{-1}$ \cite{Peng2025}.
     \item Synergistic Effects: A synergistic effect between Fe-based MOFs and HTPB substantially accelerates the decomposition of both components. In AP/HTPB/MOFs composites, this synergy reduced the HTD temperature from $437.2^\circ C$ to $342.7^\circ C$ \cite{Guo2025}.
-    \item Proximity and Concentration: The catalytic effect on the LTD of AP is enhanced when the catalyst (e.g., Copper Chromite (CC)) is in close contact or "embedded" within the AP \cite{Saha2024} \cite{Maro}(Saha et al., 2024; Marothiya et al., 2017). Experimental findings suggest an optimal catalyst concentration exists (e.g., between 0.75\% and 1\% $\text{Fe}_2\text{O}_3$). WHERE DID I GET THIS SOURCE FROM?!?! for peak performance, as higher loadings may decrease performance due to the catalyst soaking heat away from the reaction \cite{Rodriguez2019}.
+    \item Proximity and Concentration: The catalytic effect on the LTD of AP is enhanced when the catalyst (e.g., Copper Chromite (CC)) is in close contact or "embedded" within the AP \cite{Saha2024}. Experimental findings suggest an optimal catalyst concentration exists (e.g., between 0.75\% and 1\% $\text{Fe}_2\text{O}_3$). WHERE DID I GET THIS SOURCE FROM?!?! for peak performance, as higher loadings may decrease performance due to the catalyst soaking heat away from the reaction \cite{Rodriguez2019}.
 \end{enumerate}
 
 \subsubsection{Aluminized Propellants and Condensed Combustion Products (CCPs)}
@@ -246,6 +251,8 @@ Synergistic Interactions}
 \begin{itemize}
     \item This proposal aims to bridge this gap by employing atomic-scale molecular dynamics simulations (LAMMPS w/ ReaxFF) to model reaction pathways, generating insights that can explain the variance (or "missing piece") between equilibrium-based predictions and empirical observations \cite{Li2022} \cite{Chu2023}.
     \item The ultimate goal is to generate a correlative framework that provides quantitative guidance documentation and confidence thresholds for computational tool trustworthiness, enabling propellant researchers to rely more confidently on digital screening.
+    \item Ability of ReaxFF to accurately model reaction dynamics \cite{Han2015} supported by improvements in numerical stability \& energy drift due to tapered force fields. Consistently developed/validated across reaction pathways, including but not limited to combustion \cite{Senftle2016}. 
+    \item Supports hybrid models (eReaxFF/ReaxFF/AMBER), simulate localized reactive processes using ReaxFF while treating larger environment with conventional Molecular Mechanics (MM) force fields \cite{Leven2021}. Useful for catalysis where active site reactions are critical but larger environment effects (e.g., polymer binder) also matter.
 \end{itemize}
 
 \newpage
