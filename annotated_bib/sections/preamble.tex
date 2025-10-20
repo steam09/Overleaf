@@ -1,0 +1,101 @@
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{setspace}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage[version=4]{mhchem}
+\usepackage{siunitx}
+\usepackage[utf8]{inputenc}
+\usepackage{longtable}
+
+% Define Catppuccin colors (Frappe flavor)
+\definecolor{rosewater}{RGB}{242, 213, 207}
+\definecolor{flamingo}{RGB}{238, 190, 190}
+\definecolor{pink}{RGB}{244, 184, 217}
+\definecolor{mauve}{RGB}{202, 158, 230}
+\definecolor{red}{RGB}{237, 135, 150}
+\definecolor{maroon}{RGB}{232, 165, 184}
+\definecolor{peach}{RGB}{239, 180, 133}
+\definecolor{yellow}{RGB}{229, 200, 139}
+\definecolor{green}{RGB}{166, 209, 137}
+\definecolor{teal}{RGB}{129, 200, 190}
+\definecolor{sky}{RGB}{145, 207, 247}
+\definecolor{sapphire}{RGB}{138, 193, 244}
+\definecolor{blue}{RGB}{138, 173, 244}
+\definecolor{lavender}{RGB}{183, 189, 248}
+\definecolor{text}{RGB}{198, 208, 245}
+\definecolor{subtext1}{RGB}{186, 196, 222}
+\definecolor{subtext0}{RGB}{174, 183, 208}
+\definecolor{overlay2}{RGB}{162, 171, 192}
+\definecolor{overlay1}{RGB}{150, 159, 180}
+\definecolor{overlay0}{RGB}{138, 146, 171}
+\definecolor{surface2}{RGB}{126, 135, 161}
+\definecolor{surface1}{RGB}{114, 122, 149}
+\definecolor{surface0}{RGB}{102, 109, 136}
+\definecolor{base}{RGB}{64, 69, 89}
+\definecolor{mantle}{RGB}{56, 61, 78}
+\definecolor{crust}{RGB}{48, 53, 69}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+\onehalfspacing
+
+\usepackage[english]{babel}
+\usepackage{csquotes}
+\usepackage[
+  backend=biber,
+  style=ieee,
+  sorting=none,
+  maxcitenames=1,     % In-text: 1 author + et al.
+  mincitenames=1,
+  maxbibnames=1,      % Bibliography: 1 author + et al.
+  minbibnames=1
+]{biblatex}
+\addbibresource{references.bib}
+
+% Dark mode support
+\usepackage{ifthen}
+\newboolean{darkmode}
+\setboolean{darkmode}{false} % Set to true for dark mode, false for light mode
+\ifthenelse{\boolean{darkmode}}{
+    % Set up dark mode with Catppuccin colors
+    \pagecolor{base} % Set page background color to Catppuccin base
+    \color{text} % Set default text color to Catppuccin text
+
+    % Redefine hyperref colors for Catppuccin
+    \hypersetup{
+        colorlinks=true,
+        linkcolor=blue, % Use Catppuccin blue for links
+        filecolor=blue,
+        urlcolor=sky, % Use Catppuccin sky for URLs
+        citecolor=green % Use Catppuccin green for citations
+    }
+
+    % Redefine mdframed style for Catppuccin
+    \mdfsetup{
+        backgroundcolor=mantle, % Use Catppuccin mantle for background
+        linecolor=surface0, % Use Catppuccin surface0 for border
+        linewidth=1pt,
+        innertopmargin=10pt,
+        innerbottommargin=10pt,
+        skipabove=10pt,
+        skipbelow=10pt
+    }
+}{
+    \hypersetup{
+        colorlinks=true,
+        linkcolor=blue,
+        filecolor=blue,
+        urlcolor=blue,
+        citecolor=blue,
+        pdftitle={Annotated Bibliography II},
+        pdfauthor={Trison Li},
+        pdfsubject={AP Research - Great Mills High School},
+        pdfkeywords={Annotated Bibliography, AP Research, Thermochemistry, Catalysts, Molecular Dynamics}
+    }
+}
