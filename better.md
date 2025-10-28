@@ -63,7 +63,7 @@ Can regression-based correction factors derived from LAMMPS simulations improve 
 
 **Primary Research Question:**
 
-How can a hybrid multiscale modeling framework, integrating equilibrium thermochemistry (NASA-CEA2, PROPEP) with ReaxFF-based molecular dynamics, improve the predictive fidelity of AP-based propellant performance metrics (Isp, ΔH_comb) across diverse catalytic systems?
+How can a hybrid multiscale modeling framework, integrating equilibrium thermochemistry (NASA-CEA2, PROPEP) with ReaxFF-based molecular dynamics, improve the predictive fidelity of AP-based propellant performance metrics across diverse catalytic systems?
 
 **Secondary Research Objectives:**
 

@@ -1,0 +1,74 @@
+\section{Literature Review}
+
+\subsection{AP-Based Composite Propellants}
+
+As rocketry systems develop, the most commercially and hobby-relevant propulsion system are Ammonium Perchlorate Composite Propellants (APCPs) due to their high specific impulse and stability \cite{Azizi2024}\cite{Chaturvedi2015}. These propellants are heterogeneous formulations that typically consist of:
+\begin{enumerate}
+    \item a primary oxidizer (AP),
+    \item metal additives (e.g., Al, Mg) \cite{Azizi2024}\cite{RodriguezPesina2017},
+    \item curing agents,
+    \item catalysts/modifiers,
+    \item and plasticizers \cite{Chaturvedi2015}\cite{Aziz2015}.
+\end{enumerate}
+
+The usability of these products depend mainly on the manufacturing systems \cite{Cang2023}\cite{Yadav2021} which are subject to variability depending on location, environmental states, and other confounding factors. On top of this, parameters such as particle size, oxidizer-to-fuel ratio, and mixture homogeneity also affect the overall performance \cite{Aziz2015}\cite{Cang2023}\cite{Yadav2021}. Specific approaches, including the Secondary Agglomeration Model, have been used to model chemical characteristics like aluminum agglomeration during the combustion of AP with aluminum propellants \cite{Tu2024}.
+
+Catalytic metal additives are some of the most variable ingredients that are included to affect the thermal decomposition speed of AP, enabling higher burning rates \cite{Azizi2024}\cite{Yadav2021}\cite{Vara2019}. These can consist of but are not limited to transition metals such as $\text{CuO}$, $\text{Fe}_2\text{O}_3$, and $\text{ZnO}$ \cite{Vara2019}\cite{Song2008}. Nanoparticle catalysts are shown to exhibit significantly better activity compared to bulk materials due to the surface area increase \cite{Chaturvedi2015}\cite{Yadav2021}\cite{Vara2019}\cite{Song2008} as well as homogeneity. Nanometer-sized $\text{Ni}$, $\text{Cu}$, $\text{Co}$, and $\text{Al}$ powders have been tested on their effects with AP decomposition \cite{Song2008}\cite{Chandrababu2023}. 
+
+Through empirical testing, catalysts are tested in lower percentages (from $0.1 \text{ wt}\%$ to $2 \text{ wt}\%$), due to a lack of significant change at higher concentrations \cite{Yadav2021}. Findings suggest that the optimal catalyst concentration exists, but is not universal across all catalyst types. Though, for example, between $0.75\%$ and $1\%$ $\text{Fe}_2\text{O}_3$ has been found to be optimal in most cases \cite{Rodriguez2019}.
+
+The basic performance of these systems is covered by the thermal decomposition of AP \cite{Azizi2024}, which proceeds through two main stages \cite{Li2022}: 
+\begin{enumerate}
+    \item Low-Temperature Decomposition (LTD) - typically below $\sim 300^\circ\text{C}$,
+    \item High-Temperature Decomposition (HTD) - typically around $400^\circ\text{C}$ to $450^\circ\text{C}$.
+\end{enumerate}
+Thermal decomposition is mainly understood to proceed through a proton transfer mechanism \cite{Azizi2024}\cite{Vara2019}\cite{Zhou2025}, which forms gaseous ammonia ($\text{NH}_3$) and perchloric acid ($\text{HClO}_4$) \cite{Li2022}. The HTD peak is much at a much lower temperature, whcih significantly reduces the activation energy required ($E_\alpha$) \cite{Yadav2021}\cite{Benhammada2020}\cite{Peng2025}\cite{Li2022}. Iron-based polymers and metal centers are notable intermediates in the electron transfer process during the LTD process \cite{Sivadas2019}.
+
+Some of the more important catalytic effects include: 
+\begin{itemize}
+    \item Lowering of AP thermal decomposition temperatures (LTD and HTD) using additives of $\text{Mg}$ or $\text{Fe}2\text{O}3$ by $210.38^\circ\text{C}$ \cite{Azizi2024};
+    \item Adding ferric oxide ($0.05\%$) lowers the AP/sorbitol ignition temperature to $199.15^\circ\text{C}$ and merges two exothermic peaks into a single peak \cite{Azizi2024};
+    \item The catalytic effect is still observed when the catalyst is in close-contact of AP, even if it is not directly embedded \cite{Saha2024};
+\end{itemize}
+
+For analysis of these systems, especially decomposition studies, thermogravimetric-mass spectrometry (TG-MS) and differential scanning calorimetry (DSC) are commonly used \cite{Chandrababu2023}\cite{Li2022}\cite{Saha2024}\cite{Chu2023}. Methods to produce the catalysts to then be tested include chemical routes \cite{Hosseini2019}, electron transfer mechanisms \cite{Sivadas2019}, or even metal-organic frameworks (MOFs) \cite{Peng2025}\cite{Guo2024}.
+
+\subsection{Limitations of Equilibrium Modeling}
+
+Current computational performance predictive tools, including PROPEP 3.0 \cite{Azizi2024} or  NASA-CEA2 \cite{Wang2025}\cite{Boukeciat2025}  rely on a fundamentally inaccurate assumption: the reactions to proceed to chemical equilibrium by employing Gibbs free-energy minimization \cite{Chaturvedi2015}, ignoring kinetic barriers \cite{Wang2025}.
+
+In contrast though, real-life scenarios and empirical values show that with the addition of catalysts/metal additives, these reaction networks deviate from the equilibrium predictions \cite{Cang2023}\cite{Chu2023}. This leads to a limitation of predicting high theoretical adiabatic flame temperatures ($T_{ad}$) and specific impulses ($I_{sp}$) that are not commonly observed in real-world experiments \cite{Azizi2024}\cite{Wang2025}. The lack of validation studies thus means a significant gap exists between computational predictions and empirical observations, as these forecasts are treated as rough estimates \cite{Wang2025}. Reliance on equilibrium assumptions make the systems much more simplified and easier to compute, but hold the risk of being fundamentally inaccurate with the difference beteween being kinetically or thermodynamically controlled \cite{Azizi2024}\cite{Yaman2014}. Some studies then use parameters such as specific impulse efficiency ($\eta_{I_{sp}}$) or heat of combution to find a real relationship. 
+
+Of course, there are statistical metrics (like $R^2$ or MAPE) that can be used to quantify the predictive abilities of these tools, but the fact that there isn't a systemic documentation makes many scientists hesistant to use these systems over experimental validation \cite{Wang2025}.
+
+The lack of quantifiable accuracy using statistical metrics (like $R^2$ or MAPE) makes researchers hesitant to rely on computational screening as a substitute for experimental validation \cite{Wang2025}. The calculated $I_{sp}$ values must be correlated with experimentally derived data, such as the heat of combustion ($\Delta H_{comb}$) \cite{Azizi2024} or burning rate ($r$) \cite{Yaman2014}, most notably in systems containing metallic additives.
+
+While literature does cover the effects of catalysts on AP decomposition kinetics (such as $E_\alpha$ \cite{Yadav2021}), most ignore quantifying the marginal change impact on predictive metrics ($I_{sp}$, $\Delta H^\circ_{comb}$). As stated above, factors such as particle size, surface area, atomic structure, and most importantly catalyst formulation influence effeciency \cite{Yadav2021}\cite{Rodriguez2019}. These small definitions lead to difficulty in standardizing catalytic modifications throughout computational models. 
+
+The scholarly context provided reveals a deep understanding of individual catalytic impact on decomposition of AP, but lacks a unifying validation layer \cite{Li2022}. As these tools have been developed over the course of multiple decades, there is a surprising lack of reliable documentation across diverse AP-based formulations with metal additives, providing only isolated data sets over a larger net across multiple packages (NASA-CEA2, PROPEP 3.0, CPROPEP, RPA, GUIPEP).
+
+\subsection{The Bridge via Atomic-Scale Kinetic Modeling}
+
+The reaction networks and reaction mechanisms involved during AP decomposition are the main missing components in high-fidelity models \cite{Chu2023}. This, in turn, requires the usage of atomic-scale molecular dynamics (MD) simulations.
+
+\subsubsection{Molecular Dynamics (MD) Simulations}
+
+The most commercially aviable MD software in the modern day is LAMMPS (Large-Scale Atomic/Molecular Massively Parallel Simulation) with the combination of a ReaxFF (Reactive Force Field) potential \cite{Li2022}\cite{Chu2023}. 
+\begin{itemize}
+    \item LAMMPS is an open-source MD package capable of simulating atomic, biological, metallic, and granular systems for catalytic applications. 
+    \item ReaxFF uses a bond-order formalism with polarizable charge descriptions \cite{Leven2021} to model reaction dynamics. In contrast, other fields use fixed-bond potentials (e.g., AMBER, CHARMM) that cannot simulate bond formation/breaking \cite{Han2015}. Tapered force fields have been developed recently to improve overall stability and reduce energy drifting during longer simulations \cite{Furman2019}\cite{Leven2021}.
+    \item The ReaxFF paremeters are derived from quantum mechanical computations and validated across pathways, including combustion \cite{Senftle2016}. Parameterizations originally made purely for organic materials now expand towards nonmetallic and metallic elements \cite{Han2015} relevant to propelant systems. 
+    \item This methodology supports hybrid models (e.g., ReaxFF/AMBER) \cite{Leven2021}, which although allow simulations of reactive proceses with conventional molecular mechanics (MM) force fields are outside the scope of this paper. 
+\end{itemize}
+
+\subsubsection{Mechanistic Insights from Simulation and Experiment}
+
+By all means, the usage of computational tools currently show some correlation to predicted catalyzed AP decomposition performance, but there are still significant oversights in routes or energy barriers. 
+
+To quantify the kinetic parameters, isoconversional methods are used (aka FWO, Kissinger, Ozawa) which provide quantifiable values ($E_\alpha$) that can graphically illustrate the magnitude of catalyst-induced shift \cite{Benhammada2020}\cite{Chandrababu2023}\cite{Li2022}. In such an example, copper-catalyzed systems are described through the theoretical proton transfer (non-catalyzed) to the empirical discrepency by the electron transfer mechanisms \cite{Sivadas2019}. 
+
+Furthermore, these shifts are able to be confirmed by gas analysis through TG-MS or DSC \cite{Saha2024}\cite{Chu2023}. The contact achieved in catalytic embedding or even proximity can lead to the detection of reaction intermediates ($\text{HClO}_4$, $\text{ClO}_3$, $\text{ClO}_4$) via Mass Spectrometry, revealing species which can be lined to pathways that accelerate the overall reaction. 
+
+The alternative routes mentioned, revealed by MD, represent kinetically/thermodynamically-controlled mechanisms that deviate from the standard equilibrium path, thus explaining why some thermochemical codes fail to accurately predict final performance metrics. 
+
+NOTE: THIS ISN'T DONE, BECAUSE IT'S A DRAFT. I STIL HAVE MORE STUFF TO ADD TO THIS AS MY OWN RESEARCH PROGRESSES (USING MACHINE LEARNING, ETC.). 
