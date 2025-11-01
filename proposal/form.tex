@@ -35,7 +35,7 @@
 
 \vspace{1em}
 
-\section{DONE State your research question and/or project goal(s).}
+\section{DONE State your research question and/or project goal(s).} % Question 1
 
 \textbf{Primary Question:} Can regression-based correction factors derived from LAMMPS simulations improve the predictive accuracy of PROPEP/NASA-CEA2 outputs for catalyzed AP systems?
 
@@ -47,18 +47,22 @@
     \item Validate the proposed/developed framework through a conjunction between meta-analysis and cross-software benchmarking under standardized conditions
 \end{itemize}
 
-\section{DONE Identify the reasons for choosing the topic of interest and research question/project goal(s).}
+In other words, this research is planning to test current simulation softwares against empirical data done in a professional setting, and correlating the effect of catalysts on error patterns. Then, molecular dynamics simualations will be used to derive kinetic parameters to explain any discrepencies, mainly through the non-equilibrium mechiansms that catalysts can introduce. Finally, a hybrid framework will be created in a correlation constant / index form to identify which basic compound types can be trusted to depend on certain softwares. This data will not cover all formulations, but rather the most common ones / already research compounds in literature.
+
+Independent variables (IV) such as formulation characteristics (oxidizer/fuel ratio, particle sizes, catalyst concentration) will all be used and tested against the dependent variables (DV) of computational accuracy to identify patterns. This study is a multivariate regression analysis at its core. 
+
+\section{DONE Identify the reasons for choosing the topic of interest and research question/project goal(s).} % Question 2
 
 \begin{itemize}
     \item In the practice of chemical and materials engineering, computational tools have been in development for these exact concepts for years, but those same softwares, as elaborated later, rely on equilibrium thermochemistry principles that may not hold true for catalyzed systems.
-    \item A significant disconnect exists between atomistic simulations, empirical data, and the codes behind the softwares that engineers use. While there are many papers that have used these same tools, with a spike in recent years, the equlibrium assumptions that are made fail to properly capture the non-equilibrium kinetics and mechanisms introduced by catalysts.
+    \item A significant disconnect exists between atomistic simulations, empirical data, and the codes behind the softwares that engineers use. While there are many papers that have used these same tools, with a spike in recent years, the equilibrium  assumptions that are made fail to properly capture the non-equilibrium kinetics and mechanisms introduced by catalysts.
     \item The ability to depend on these softwares with enough confidence can accelerate the development of new and improved formulations, assuming enough documentation and validation exists. These goals are especially aimed at groups who are unable to provide the testing that larger companies can replicate, either due to cost, safety, or time-based constraints. 
     \item Personal Reasons: Experience in materials science (namely fuel propulsion), programming (Python, R, MATLAB), AP Chemistry, and computational simulation tools. 
 \end{itemize}
 
 \newpage
 
-\section{Provide a brief annotated list of three key studies that have informed your understanding of the scholarly conversations surrounding your topic. Describe what each has contributed to the development of your inquiry proposal.}
+\section{DONE ENOUGH Provide a brief annotated list of three key studies that have informed your understanding of the scholarly conversations surrounding your topic. Describe what each has contributed to the development of your inquiry proposal.} % Question 3
 
 \begin{enumerate}
     \item \textbf{Azizi et al. (2025). Heat of Combustion and Thermal Decomposition of Ammonium Perchlorate/Sorbitol Solid Propellant with Metal Additives}
@@ -76,7 +80,7 @@
 
 \newpage
 
-\section{Identify the gap addressed by your proposed research. Explain how the gap is situated into the scholarly situation. Provide sources to justify the gap your proposed research is addressing.}
+\section{DONE Identify the gap addressed by your proposed research. Explain how the gap is situated into the scholarly situation. Provide sources to justify the gap your proposed research is addressing.} % Question 4
 
 While computational tools exist for propellant development since the late 20th century, their predictive ability is still not completely explored and poorly documented across many types of combustion formulations (in this case AP-based ones containing metal additives). No cross-tool validation framework exists that is able to evaluate which computational approaches are most effective under different conditions.
 
@@ -92,11 +96,21 @@ There are three main research streams:
 
 \end{enumerate}
 
-Current research lacks a method to correct these errors based on first-principles chemistry. This paper aims to introduce a hybrid framework that uses ReaxFF molecular dynamics to derive atomistically-informed correction factors, culminating in a Computational Reliability Index (CRI) to guide model trustworthiness.
+Current research lacks a method to correct these errors based on first-principles chemistry. This paper aims to introduce a hybrid framework that uses ReaxFF molecular dynamics to derive atomistically-informed correction factors, resulting in a Computational Reliability Index (CRI) to guide model trustworthiness.
 
 \newpage
 
-\section{DONE Describe your chosen or developed research method and defend its alignment with your research question.}
+\section{DONE Describe your chosen or developed research method and defend its alignment with your research question.} % Question 5
+
+KEY TERMS:
+\begin{itemize}
+    \item ReaxFF: Reactive Force Field; 
+    \item LAMMPS: Large-scale Atomic/Molecular Massively Parallel Simulator;
+    \item NNP: Neural Network Potential
+    \item Machine Learning Model: Random Forest Regression to learn patterns from data in making future Predictions
+    \item Computational Reliability Index (CRI): A confidence score (0, 1) in a researcher's ability to "trust" simulation predictions (think of credit scores, but less granular). 
+\end{itemize}
+
 
 This study will include a hybrid methodology combining meta-analysis, equilibrium thermochemistry, atomistic simulation, and statistical modeling. The research will progress through four main integrated phases:
 
@@ -108,9 +122,9 @@ This study will include a hybrid methodology combining meta-analysis, equilibriu
     \item Creation of validated benchmark dataset against which computational predictions can be evaluated
 \end{itemize}
 
-\textbf{Phase 2 - Literature Meta-Analysis}
+\textbf{Phase 2 - Software Benchmarking}
 \begin{itemize}
-    \item Generation of theoretical performance metrics for each benchmark formulation using four equilibrium-based tools: NASA-CEA2, PROPEP 3.0, CPROPEP, and RPA Lite
+    \item Generation of theoretical performance metrics for each benchmark formulation using four equilibrium-based tools: rocketCEA, RPA Lite, Cantera, PROPEP 3.0
     \item Standardization of input conditions across all tools - 1000 psi chamber pressure, 298 K initial temperature, sea-level expansion ratio
     \item Recording of predicted $I_{sp}$, combustion temperature $T_c$, $\Delta H_{comb}^{\circ}$, and exhaust composition
     \item Calculation of accuracy metrics ($R^2$, RMSE, MAPE) comparing predictions to empirical values
@@ -140,7 +154,7 @@ This study will include a hybrid methodology combining meta-analysis, equilibriu
 \textbf{Phase 4 - Multivariate Machine Learning}
 \begin{itemize}
     \item Integration of LAMMPS-derived kinetic parameters with formulation descriptors (catalyst identity, concentration, particle size, oxidizer-to-fuel ratio) as input features
-    \item Training of multivariate regression model (Random Forest or Gaussian Process Regression depending on time) to predict magnitude of computational error for equilibrium-based tools
+    \item Training of multivariate regression model (Random Forest) to predict magnitude of computational error for equilibrium-based tools. A potential future work could be using Gaussian Process Regression, but that is complexity without proportional benefit to justify the time committment. 
     \item Feature importance analysis (e.g., SHAP values) to identify formulation variables most \newline strongly influence predictive ability
     \item Potentially developing a Computational Reliability Index (CRI) with:
     \begin{itemize}
@@ -152,7 +166,7 @@ This study will include a hybrid methodology combining meta-analysis, equilibriu
 
 \newpage
 
-\section{DONE What additional approval processes are required for your research? Select all that apply.}
+\section{DONE What additional approval processes are required for your research? Select all that apply.} % Question 6
 
 \ding{113} Human subjects [requires additional IRB review and approval if student wants to publish and/or publicly present]
 
@@ -164,13 +178,13 @@ This study will include a hybrid methodology combining meta-analysis, equilibriu
 
 \ding{110} No additional review or approvals required
 
-\section{DONE Explain how your proposed method complies with ethical research practice.}
+\section{DONE Explain how your proposed method complies with ethical research practice.} % Question 7
 
 No human subjects will be at risk of data-leaks, but rather only free-access sets and researcher-side computational testing will be applied.
 
 \newpage
 
-\section{DONE Describe the data or additional scholarly work that will be generated to answer your proposed research question or achieve your project goal.}
+\section{DONE Describe the data or additional scholarly work that will be generated to answer your proposed research question or achieve your project goal.} % Question 8
 
 \begin{enumerate}
     \item \textbf{Benchmark Dataset}
@@ -179,7 +193,7 @@ No human subjects will be at risk of data-leaks, but rather only free-access set
         \item Empirical performance metrics ($I_{sp}$, seconds) and heat of combustion ($\Delta H_{comb}^{\circ}$, kJ/kg)
         \item Catalyst types, concentrations, oxidizer/fuel ratios, and particle sizes
         \item Experimental conditions: chamber pressure, temperature, expansion ratio, calorimetry methods
-        \item Target: 25–30 distinct formulations over catalyst systems
+        \item Target: 25-30 distinct formulations over catalyst systems
     \end{itemize}
     
     \item \textbf{Computational Predictions}
@@ -233,44 +247,120 @@ No human subjects will be at risk of data-leaks, but rather only free-access set
 
 \newpage
 
-\section{Describe the way you will analyze the data or additional scholarly work generated by your method and justify its alignment with your research question and/or project goal.}
+\section{Describe the way you will analyze the data or additional scholarly work generated by your method and justify its alignment with your research question and/or project goal.} % Question 9
 
-\textbf{Statistical Analysis:}
+\section{Describe the way you will analyze the data or additional scholarly work generated by your method and justify its alignment with your research question and/or project goal.} % Question 9
+
+\subsection*{Statistical Design Clarification}
+
+This project uses a multivariate observational research design to evaluate predictive abilities of softwares with prediction error magnitudes (MAPE) as the dependent variable. Multiple independent variables, as stated earlier, will be uesd as predictors within the Random Forest regression model.
+
+\subsection*{Overview of Analytical Tools Development}
+
+\textbf{Tool 1: Automated Prediction Pipeline}
 \begin{itemize}
-    \item Calculating metrics for comparing predicted vs empirical $I_{sp}$ and $\Delta H$ values
-    \item Using ANOVA to test accuracy differences between tools
-    \item Regression analysis on prediction errors through types, concentrations, or other variables
-    \item Accuracy test in uncatalyzed vs catalyzed systems and by concentration ranges
+    \item \textit{Purpose:} To generate predictions from the four thermochemical tools for each formulation in literature
+    \item \textit{Method:} Scripts (python) to standardize input generation, executing simulation through softwares (GUI or command-line), and providing outputs in a common format (most likely CSV)
+    \item \textit{Validation:} To compare the outputs against known results 
 \end{itemize}
 
-\textbf{Molecular Dynamics Analysis:}
+\textbf{Tool 2: LAMMPS Analysis Workflow}
 \begin{itemize}
-    \item Reaction pathways from LAMMPS simulations that differ by catalyst type groupings
-    \item Activation energies and comparing those to literature values
-    \item Pathways complexity and error magnitude of non-equilibrium mechanisms would describe decomposition better than current software, and if so in what cases
+    \item \textit{Purpose:} Extract kinetic parameters (Ea, pre-exponential factors) from molecular dynamics trajectories
+    \item \textit{Method:} Developed scripts to track compound relative ratios over time and fit to Arrheniun equations
+    \item \textit{Validation:} Pure AP simulation can reproduce literature activation energies (150-180 kJ/mol)
 \end{itemize}
 
-\textbf{Framework Development:}
+\textbf{Tool 3: Random Forest Regression Model}
 \begin{itemize}
-    \item Decision guidance documentation which can link formulation characteristics to which tool to use
-    \item Confidence thresholds for when certain computational predictions are good enough vs need empirical validation
+    \item \textit{Purpose:} Predict computational tool error based on formulation characteristics through controlled learning
+    \item \textit{Method:} Train scikit-learn Random Forest model with 80/20 train-test split and 5-fold cross-validation
+    \item \textit{Validation:} Test predictions on withheld formulations to evaluate general performance (MAPE)
 \end{itemize}
 
-\textbf{Analytical Tools:} Python (pandas/scipy)
+\textbf{Tool 4: Computational Reliability Index (CRI)}
+\begin{itemize}
+    \item \textit{Purpose:} Provide developers/researchers with a confidence score for computational predictions
+    \item \textit{Method:} Transform Random Forest predicted error into 0-1 scale with interpretable thresholds (>0.8 = reliable, <0.5 = validation needed)
+\end{itemize}
 
-\textbf{Alignment:} Quantifies computational tool accuracy, error patterns by formulation characteristics, and atomic mechanisms to predictive deviations.
+\subsection*{Statistical Analysis Approach}
+
+\textbf{Descriptive Statistics:}
+\begin{itemize}
+    \item Calculate accuracy metrics (R², RMSE, MAPE) for each tool
+    \item Create visualizations: scatter plots (predicted vs. empirical), error distributions, heat maps (error by catalyst type / tool)
+\end{itemize}
+
+\textbf{Comparative Analysis:}
+\begin{itemize}
+    \item ANOVA in testing tool accuracy == differs significantly
+    \item Analysis comparing uncatalyzed vs. catalyzed system performance
+\end{itemize}
+
+\textbf{Multivariate Modeling:}
+\begin{itemize}
+    \item Random Forest regression w/ prediction error value as target variable (DV)
+    \item Input features: catalyst type, concentration, particle size, tool selection, LAMMPS-derived kinetic parameters
+    \item Feature analysis to identify variables that most strongly influence accuracy
+\end{itemize}
+
+\textbf{Mechanistic Correlation:}
+\begin{itemize}
+    \item Compare LAMMPS-derived activation energies (E_a) to empirical literature
+    \item Test if larger deviations from equilibrium assumptions correlate with higher prediction errors for software deviations
+\end{itemize}
+
+\subsection*{Analytical Software}
+Python (pandas, scipy, scikit-learn, matplotlib) for data manipulation, statistical testing, machine learning, and visualization. LAMMPS native tools and VMD for trajectory analysis. Repeated in above section
+
+\subsection*{Alignment with Research Question}
+This analytical framework addresses the intended research question by:
+\begin{enumerate}
+    \item Quantifying current tool accuracy through testing
+    \item Developing a model that incorporates atomistic kinetic data as inputs
+    \item Producing a reliability index that can be uses before committing to experimental testing (time and cost savings)
+    \item Demonstrating whether atomic-scale mechanisms explain macroscopic prediction failures
+\end{enumerate}
 
 \newpage
 
-\section{List any equipment, resources, and permissions needed to collect data or information. Attach the initial drafts that apply to your proposal if engaged in human subject research: informed consent forms; surveys, interview questions, questionnaires, or other data collection devices; or letters/flyers that will be distributed to study subjects.}
+\section{DONE List any equipment, resources, and permissions needed to collect data or information. Attach the initial drafts that apply to your proposal if engaged in human subject research: informed consent forms; surveys, interview questions, questionnaires, or other data collection devices; or letters/flyers that will be distributed to study subjects.} % Question 10
 
-\textbf{Computer \& Software (Open-Source [Not the computer haha])}
+\textbf{Hardware}
 \begin{itemize}
-    \item Personal / School-based computer with NASA-CEA2, PROPEP 3.0, CPROPEP, RPA Lite, GUIPEP
-    \item LAMMPS w/ ReaxFF force fields
-    \item Python including pandas/scipy; VMD/OVITO for visualization
+    \item Personal laptop for programs, data analysis, and literature review
+    \item School-based computer for extended simluations should time permit
+    \item Cloud computing platforms (mainly Google Colab) if needed for machine learning model training
+\end{itemize}
+
+\textbf{Software}
+\begin{itemize}
+    \item rocketCEA - Python wrapper of NASA-CEA2 code
+    \item RPA Lite - Rocket propulsion analysis software
+    \item Cantera - Open-source suite for chemical kinetics, thermodynamics, and intermediates
+    \item PROPEP 3.0 - Propellant evaluation program from AFRL
     \item If needed, use Google Colab, AWS, or Jupyter Notebooks for computing power
     \item SciKit-Learn w/ pandas: one for data cleaning and organizing, one for training the model
+\end{itemize}
+
+\textbf{Molecular Dynamics Sims}
+\begin{itemize}
+    \item LAMMPS - open-source MD simulator
+    \item ReaxFF force fields validated for AP and metal oxides
+    \item Visualization tools: VMD (Visual Molecular Dynamics) and/or OVITO in trajectory analysis
+\end{itemize}
+
+\textbf{Data Analysis}
+\begin{itemize}
+    \item Python w/ libraries: pandas, scripy, scikit-learn, numpy, matplotlib/seaborn, shap
+\end{itemize}
+
+\textbf{Development Environments}
+\begin{itemize}
+    \item Jupyter Notebooks - Ease of access reproducible workflows
+    \item Google Colab
+    \item Git/Github - Version control, code backup, documentation, and storage for open source access
 \end{itemize}
 
 \textbf{Literature Access}
@@ -278,23 +368,23 @@ No human subjects will be at risk of data-leaks, but rather only free-access set
     \item Google Scholar, ResearchGate, NASA Technical Reports, JSTOR, ScienceDirect, other journals
 \end{itemize}
 
-No permissions from IRB, laboratory approval, or database access until further notice. No attached forms for human subjects.
+No permissions from IRB, laboratory approval, or database access needed. No attached forms for human subjects.
 
 \newpage
 
-\section{Describe the anticipated logistical and personnel challenges for your research project (to collect and analyze data or pursue research methods appropriate to a paper that supports a performance/exhibit/product).}
+\section{DONE Describe the anticipated logistical and personnel challenges for your research project (to collect and analyze data or pursue research methods appropriate to a paper that supports a performance/exhibit/product).} % Question 11
 
 \begin{enumerate}
     \item \textbf{Literature Data Availability}
     \begin{itemize}
-        \item Maybe not find 30+ formulations for the criteria, or uneven catalyst/concentration coverage
+        \item Inability to find 30+ formulations for the criteria, or uneven catalyst/concentration coverage
         \item Lower \# of formulations (20--25), expand additive types, or pre-2000s sources (with skepticism)
     \end{itemize}
     
-    \item \textbf{LAMMPS is hard}
+    \item \textbf{LAMMPS Technical Curve}
     \begin{itemize}
-        \item It's a steep learning curve, simulations can fail or require computing power that I do not have
-        \item Trust me, I got this (hopefully\ldots\ maybe\ldots\ I'll try my best)
+        \item Steep learning curve, convergence issues, computational resources (laptop)
+        \item Potential changes: smaller simulation atoms, \# of representative formulations, cloud computing, shorter simulation times, or a focus on qualitative mechanisms over quantitative kinetics
     \end{itemize}
     
     \item \textbf{Literature Reporting}
@@ -303,30 +393,27 @@ No permissions from IRB, laboratory approval, or database access until further n
         \item Data quality tiers; sensitivity to lower-``quality'' data; non-parametric tests
     \end{itemize}
     
-    \item \textbf{Time Time Time}
+    \item \textbf{Time Management}
     \begin{itemize}
-        \item This is an ambitious project for 4 months
-        \item If need be, scrap LAMMPS usage
+        \item Ambitious scope vs. limited time, especially for the 4 months provided in a high-school level
     \end{itemize}
 \end{enumerate}
 
-\section{Provide a brief timeline that outlines your process from now through project completion.}
+\section{Provide a brief timeline that outlines your process from now through project completion.} % Question 12
 
-See Section 8 (page 14) of attached research proposal for detailed timeline with monthly breakdown and key milestones. I made it look nice...
+\begin{enumerate}
+    \item 
+\end{enumerate}
 
-\section{Discuss the anticipated value and/or broader implications of your research project.}
+\section{Discuss the anticipated value and/or broader implications of your research project.} % Question 13
 
-\textbf{Scientific Value:} Validation methodology for computational propellant design tools; bridging chemistry and engineering performance through atomic-scale mechanisms with prediction errors
+\textbf{Scientific Value:} Validation methodology for computational propellant design tools; linking atomic-scale mechanisms to macroscopic prediction accuracy
 
 \textbf{Practical Impact:} Accelerated development of formulations, fewer iterations to save materials, and less hazardous materials overall
 
 \textbf{Broader Implications:} Simpler for smaller organizations to develop cheaper formulations, especially with limited materials
 
-\textbf{Limitation:} Cannot replace physical empirical validation, but it does enough to scrap out the terrible ones
-
-\vspace{1em}
-
-For any further questions, please direct to the correlated section of the pdf attached within the same Google Drive folder.
+\textbf{Limitation:} Cannot replace physical empirical validation, but enables pre-screening for non-satisfactory candidates
 
 \vspace{2em}
 
