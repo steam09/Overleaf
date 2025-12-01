@@ -23,3 +23,4 @@ cea-exec/
 personal.md
 table_output.tex
 __pycache__
+.gitignore
